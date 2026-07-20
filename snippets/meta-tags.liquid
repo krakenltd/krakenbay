@@ -11,6 +11,9 @@
   elsif page_description == blank
     assign og_description = 'Professionally tested refurbished computers, components and technology from Kraken Bay.'
   endif
+  if og_description == blank and request.page_type == 'product'
+    assign og_description = 'Shop ' | append: product.title | append: ' from Kraken Bay. Tested refurbished technology with a 3-month warranty.' | truncate: 160
+  endif
 
   if request.page_type == 'product'
     assign og_type = 'product'
