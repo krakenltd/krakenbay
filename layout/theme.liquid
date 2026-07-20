@@ -35,7 +35,7 @@
         assign kb_meta_description = 'Shop ' | append: product.title | append: ' from Kraken Bay. Professionally tested refurbished technology with a 3-month warranty and UK support.' | truncate: 160
       endif
     -%}
-    <meta name="description" content="{{ kb_meta_description | strip_html | strip_newlines | escape }}">
+    <meta name="description" content="{{ kb_meta_description | default: 'Professionally tested refurbished computers, components and technology from Kraken Bay, with UK support and a 3-month warranty.' | strip_html | strip_newlines | escape }}">
 
     {% render 'meta-tags' %}
 

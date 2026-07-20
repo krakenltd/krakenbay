@@ -28,7 +28,7 @@
 <meta property="og:url" content="{{ og_url }}">
 <meta property="og:title" content="{{ og_title | escape }}">
 <meta property="og:type" content="{{ og_type }}">
-<meta property="og:description" content="{{ og_description | escape }}">
+<meta property="og:description" content="{{ og_description | default: 'Professionally tested refurbished technology from Kraken Bay, with UK support and a 3-month warranty.' | escape }}">
 
 {%- if page_image -%}
   <meta property="og:image" content="http:{{ page_image | image_url }}">
@@ -49,4 +49,4 @@
 {%- endif -%}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
-<meta name="twitter:description" content="{{ og_description | escape }}">
+<meta name="twitter:description" content="{{ og_description | default: 'Professionally tested refurbished technology from Kraken Bay, with UK support and a 3-month warranty.' | escape }}">
