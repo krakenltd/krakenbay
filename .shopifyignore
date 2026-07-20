@@ -1,0 +1,7 @@
+.git/
+.gitignore
+.shopifyignore
+README.md
+Curent Theme/
+*.zip
+node_modules/

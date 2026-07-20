@@ -1,0 +1,1095 @@
+{% comment %}
+  Filtered Brand Collection Section
+{% endcomment %}
+
+<section
+  class="filtered-brand-collection section"
+  data-collection-handle="{{ section.settings.collection.handle }}"
+  data-max-items="{{ section.settings.products_to_show | default: 1000 }}"
+  data-design-mode="{{ request.design_mode }}"
+>
+  <div class="page-width filtered-brand-collection__container">
+    {%- assign collection = section.settings.collection -%}
+
+    <!-- SECTION TITLE -->
+    {% if section.settings.banner_heading != blank %}
+      <div class="filtered-brand-collection__header">
+        <h2 class="filtered-brand-collection__title">
+          {{ section.settings.banner_heading | escape }}
+        </h2>
+      </div>
+    {% endif %}
+
+    <div class="filtered-brand-collection__inner filtered-brand-collection__inner--banner-{{ section.settings.banner_position }}">
+      {%- if section.settings.banner_image != blank -%}
+        <div class="filtered-brand-collection__banner filtered-brand-collection__banner--{{ section.settings.banner_position }}">
+          <a
+            {% if section.settings.banner_link != blank %}
+              href="{{ section.settings.banner_link }}"
+            {% elsif collection != blank %}
+              href="{{ collection.url }}"
+            {% else %}
+              href="#"
+            {% endif %}
+            class="filtered-brand-collection__banner-link"
+          >
+            {{ section.settings.banner_image | image_url: width: 900 | image_tag:
+              loading: 'lazy',
+              sizes: '(min-width: 1200px) 40vw, 100vw',
+              class: 'filtered-brand-collection__banner-image'
+            }}
+          </a>
+        </div>
+      {%- endif -%}
+
+      <div class="filtered-brand-collection__content">
+
+        <!-- SEARCH BAR -->
+        <div class="filtered-brand-collection__search-wrapper">
+          <div class="filtered-brand-collection__search-inner">
+            <svg
+              class="filtered-brand-collection__search-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 0 0 1.57-4.23 6.5 6.5 0 1 0-6.5 6.5 6.47 6.47 0 0 0 4.23-1.57l.27.28v.79L20 20.49 21.49 19 15.5 14zm-6 0A4.5 4.5 0 1 1 14 9.5 4.505 4.505 0 0 1 9.5 14z"
+              ></path>
+            </svg>
+            <input
+              type="search"
+              class="filtered-brand-collection__search-input"
+              placeholder="What are you looking for?"
+              aria-label="Search products"
+              autocomplete="off"
+            >
+          </div>
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="filtered-brand-collection__filters-group">
+            {%- assign filter_rows = "row1,row2,row3,row4,row5" | split: "," -%}
+
+            {%- for row in filter_rows -%}
+              {%- assign row_has_blocks = false -%}
+
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'filter' and block.settings.filter_row == row -%}
+                  {%- assign row_has_blocks = true -%}
+                {%- elsif block.type == 'type_filter' and block.settings.type_row == row -%}
+                  {%- assign row_has_blocks = true -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              {%- if row_has_blocks -%}
+                <div class="filtered-brand-collection__filters" data-filter-row="{{ row }}">
+                  {%- for block in section.blocks -%}
+
+                    {%- if block.type == 'filter' and block.settings.filter_row == row -%}
+                      <!-- TAG / BRAND FILTER -->
+                      <button
+                        type="button"
+                        class="filtered-brand-collection__filter-btn{% if block.settings.filter_image == blank %} filtered-brand-collection__filter-btn--no-image{% endif %}"
+                        data-filter-brand-button
+                        data-filter-brand="{{ block.settings.filter_tag | strip | downcase }}"
+                        {{ block.shopify_attributes }}
+                      >
+                        {%- if block.settings.filter_image != blank -%}
+                          <span class="filtered-brand-collection__filter-image-wrap">
+                            {{ block.settings.filter_image | image_url: width: 96 | image_tag:
+                              loading: 'lazy',
+                              class: 'filtered-brand-collection__filter-image'
+                            }}
+                          </span>
+                        {%- endif -%}
+
+                        {%- if block.settings.filter_label != blank -%}
+                          <span class="filtered-brand-collection__filter-label">
+                            {{ block.settings.filter_label | escape }}
+                          </span>
+                        {%- endif -%}
+                      </button>
+
+                    {%- elsif block.type == 'type_filter' and block.settings.type_row == row -%}
+                      <!-- TYPE FILTER (text-only) -->
+                      <button
+                        type="button"
+                        class="filtered-brand-collection__filter-btn filtered-brand-collection__filter-btn--no-image"
+                        data-filter-type-button
+                        data-filter-type="{{ block.settings.type_value | strip | downcase }}"
+                        {{ block.shopify_attributes }}
+                      >
+                        <span class="filtered-brand-collection__filter-label">
+                          {{ block.settings.type_label | escape }}
+                        </span>
+                      </button>
+                    {%- endif -%}
+
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div class="filtered-brand-collection__products-wrapper">
+          <div
+            class="filtered-brand-collection__products"
+            data-products-scroller
+          >
+            <noscript>
+              <p class="filtered-brand-collection__empty">
+                Please enable JavaScript to view products in this section.
+              </p>
+            </noscript>
+          </div>
+
+          <!-- NAV BUTTONS -->
+          <button
+            type="button"
+            class="filtered-brand-collection__nav filtered-brand-collection__nav--prev"
+            data-products-prev
+            aria-label="Scroll products left"
+          >
+            ‹
+          </button>
+
+          <button
+            type="button"
+            class="filtered-brand-collection__nav filtered-brand-collection__nav--next"
+            data-products-next
+            aria-label="Scroll products right"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+
+.filtered-brand-collection {
+  margin: 3rem 0;
+  background: transparent;
+}
+
+.filtered-brand-collection__container {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+/* Header / title */
+.filtered-brand-collection__header {
+  margin-bottom: 1.5rem;
+}
+.filtered-brand-collection__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Layout */
+.filtered-brand-collection__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
+  gap: 0; /* no gap between image and grey panel */
+  align-items: stretch;
+}
+
+.filtered-brand-collection__inner--banner-right {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+}
+.filtered-brand-collection__inner--banner-right .filtered-brand-collection__banner {
+  order: 2;
+}
+.filtered-brand-collection__inner--banner-right .filtered-brand-collection__content {
+  order: 1;
+}
+
+/* Banner – only image, no grey */
+.filtered-brand-collection__banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.filtered-brand-collection__banner-link {
+  display: block;
+  height: 100%;
+}
+
+/* Desktop image-side rounding */
+.filtered-brand-collection__inner--banner-left .filtered-brand-collection__banner {
+  border-radius: 24px 0 0 24px;
+}
+.filtered-brand-collection__inner--banner-right .filtered-brand-collection__banner {
+  border-radius: 0 24px 24px 0;
+}
+
+.filtered-brand-collection__banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Grey block only on content side (desktop) */
+.filtered-brand-collection__content {
+  background: #f5f5f7;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 24px 24px 0; /* default: banner left */
+}
+
+/* When banner is on the right, flip the rounded corners (desktop) */
+.filtered-brand-collection__inner--banner-right .filtered-brand-collection__content {
+  border-radius: 24px 0 0 24px;
+}
+
+/* Search bar */
+.filtered-brand-collection__search-wrapper {
+  margin-bottom: 1.5rem;
+}
+.filtered-brand-collection__search-inner {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1.2rem;
+  border-radius: 999px;
+  background: #eceff3;
+}
+.filtered-brand-collection__search-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-right: 0.6rem;
+  opacity: 0.6;
+}
+.filtered-brand-collection__search-input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  outline: none;
+}
+.filtered-brand-collection__search-input::placeholder {
+  opacity: 0.7;
+}
+.filtered-brand-collection__search-inner:focus-within {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.05);
+  background: #e2e6ee;
+}
+
+/* FILTER BUTTON STRIP */
+.filtered-brand-collection__filters-group {
+  margin-bottom: 1.5rem;
+}
+
+.filtered-brand-collection__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  overflow-x: visible; /* allow wrapping instead of horizontal scroll */
+}
+.filtered-brand-collection__filters::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pills - base button */
+.filtered-brand-collection__filter-btn {
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition:
+    transform 0.1s ease,
+    color 0.15s ease;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.filtered-brand-collection__filter-btn:hover,
+.filtered-brand-collection__filter-btn:focus,
+.filtered-brand-collection__filter-btn:focus-visible,
+.filtered-brand-collection__filter-btn.is-active {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+.filtered-brand-collection__filter-btn.is-active .filtered-brand-collection__filter-label {
+  color: inherit;
+}
+
+/* Icon "bubble" inside the button (for AMD/Intel logos etc.) */
+.filtered-brand-collection__filter-image-wrap {
+  width: 100px;
+  height: 64px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+.filtered-brand-collection__filter-image {
+  max-width: 48px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
+/* Darken ONLY the icon bubble when hovering/active (row 1 with images) */
+.filtered-brand-collection__filter-btn:hover .filtered-brand-collection__filter-image-wrap {
+  background: rgba(0,0,0,0.06);
+}
+.filtered-brand-collection__filter-btn.is-active .filtered-brand-collection__filter-image-wrap {
+  background: rgba(0,0,0,0.12);
+}
+
+/* Label below image / text pills */
+.filtered-brand-collection__filter-label {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+/* Text-only tag/type pills (no image) */
+.filtered-brand-collection__filter-btn--no-image {
+  padding: 0.4rem 0.4rem;
+}
+
+.filtered-brand-collection__filter-btn--no-image .filtered-brand-collection__filter-label {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.03);
+  transition: background 0.15s ease;
+}
+
+/* Darken ONLY the little text bubble on hover/active (row 2 etc.) */
+.filtered-brand-collection__filter-btn--no-image:hover .filtered-brand-collection__filter-label {
+  background: rgba(0,0,0,0.06);
+}
+.filtered-brand-collection__filter-btn--no-image.is-active .filtered-brand-collection__filter-label {
+  background: rgba(0,0,0,0.12);
+}
+
+/* PRODUCTS + NAV */
+.filtered-brand-collection__products-wrapper {
+  position: relative;
+  flex: 1 1 auto;
+  height: 420px; /* FIXED HEIGHT ON DESKTOP – tweak if needed */
+}
+
+.filtered-brand-collection__products {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0.25rem 0 3.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  align-items: stretch;
+  height: 100%; /* fill wrapper height */
+}
+.filtered-brand-collection__products::-webkit-scrollbar {
+  display: none;
+}
+
+/* Product card in scroller – always fill wrapper height */
+.filtered-brand-collection__product-card {
+  min-width: min(260px, 80vw);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.filtered-brand-collection__product-card .card-wrapper,
+.filtered-brand-collection__product-card .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Image area at top, auto height inside fixed card */
+.filtered-brand-collection__product-card .card__inner {
+  flex: 0 0 auto;
+}
+
+/* Text area flexes but stays inside fixed card height */
+.filtered-brand-collection__product-card .card__content {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+/* Standardise CPU image visual size even if source resolution varies */
+.filtered-brand-collection__product-card .card__media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.filtered-brand-collection__product-card .card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+}
+
+.filtered-brand-collection__product-card {
+  min-width: min(260px, 80vw);
+}
+
+/* nav buttons bottom-right – BIGGER */
+.filtered-brand-collection__nav {
+  position: absolute;
+  bottom: 0.85rem;
+  border-radius: 999px;
+  border: none;
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.22);
+  z-index: 3;
+}
+.filtered-brand-collection__nav--prev {
+  right: 9.5rem;
+  background: #e5e5e5;
+  color: #111;
+}
+.filtered-brand-collection__nav--next {
+  right: 1rem;
+  background: #111;
+  color: #fff;
+}
+.filtered-brand-collection__nav[disabled] {
+  opacity: 0.4;
+  cursor: default;
+  box-shadow: none;
+}
+
+.filtered-brand-collection__empty {
+  margin: 0;
+}
+
+/* MOBILE */
+@media screen and (max-width: 749px) {
+  .filtered-brand-collection__inner,
+  .filtered-brand-collection__inner--banner-right {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .filtered-brand-collection__container {
+    max-width: 100%;
+  }
+
+  .filtered-brand-collection__title {
+    font-size: 1.4rem;
+  }
+
+  /* Ensure correct mobile rounding on image wrapper:
+     top two curved, bottom two square, regardless of left/right layout */
+  .filtered-brand-collection__inner--banner-left .filtered-brand-collection__banner,
+  .filtered-brand-collection__inner--banner-right .filtered-brand-collection__banner {
+    border-radius: 24px 24px 0 0;
+    overflow: hidden;
+  }
+
+  .filtered-brand-collection__banner {
+    order: 1 !important;
+  }
+
+  /* Image follows same corners */
+  .filtered-brand-collection__banner-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 24px 24px 0 0;
+  }
+
+  /* Grey panel directly under image:
+     top square (to meet image), bottom curved */
+  .filtered-brand-collection__content {
+    order: 2 !important;
+    border-radius: 0 0 24px 24px;
+    padding: 1.75rem 1.25rem;
+  }
+
+  /* Let mobile height be natural so it can grow */
+  .filtered-brand-collection__products-wrapper {
+    height: auto;
+  }
+
+  /* slightly smaller mobile nav */
+  .filtered-brand-collection__nav {
+    width: 48px;
+    height: 48px;
+    font-size: 1.8rem;
+    bottom: 0.5rem;
+  }
+  .filtered-brand-collection__nav--prev {
+    right: 6.5rem;
+  }
+  .filtered-brand-collection__nav--next {
+    right: 0.75rem;
+  }
+  
+}
+
+{% endstylesheet %}
+
+{% javascript %}
+(function() {
+  const sections = document.querySelectorAll('.filtered-brand-collection');
+  if (!sections.length) return;
+
+  // Normalise strings for "smart" search:
+  // - lower-case
+  // - remove all non a–z / 0–9
+  function normaliseSearch(str) {
+    return (str || '')
+      .toString()
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+  }
+
+  sections.forEach(function(section) {
+    const scroller = section.querySelector('[data-products-scroller]');
+    const prevBtn = section.querySelector('[data-products-prev]');
+    const nextBtn = section.querySelector('[data-products-next]');
+    const rowWrappers = Array.from(section.querySelectorAll('.filtered-brand-collection__filters'));
+    const searchInput = section.querySelector('.filtered-brand-collection__search-input');
+    if (!scroller) return;
+
+    const collectionHandle = section.getAttribute('data-collection-handle');
+    const maxItemsAttr = section.getAttribute('data-max-items') || '1000';
+    const isDesignMode =
+      section.getAttribute('data-design-mode') === 'true' ||
+      (window.Shopify && Shopify.designMode);
+
+    // Limit total products for performance
+    let maxItems = Math.min(parseInt(maxItemsAttr, 10) || 1000, 1000);
+    if (isDesignMode) {
+      maxItems = Math.min(maxItems, 80); // keep editor light
+    }
+
+    const perPage = isDesignMode ? 80 : 250;
+    const maxPages = Math.min(4, Math.ceil(maxItems / perPage));
+
+    let initialized = false;
+    let initializing = false;
+    let pendingFilterAction = null;
+    let productCards = [];
+    const rowFilters = {};
+    let searchQuery = '';
+
+    /* ---------- HELPERS ---------- */
+
+    function getCardData(card) {
+      // CACHE data on the card to avoid recomputing for every filter pass
+      if (card._kbData) return card._kbData;
+
+      const tagsRaw = card.dataset.productTags || '';
+      const tagsArr = tagsRaw
+        .split('|')
+        .map(function(t) { return t.trim(); })
+        .filter(Boolean);
+
+      const textBits = [
+        card.dataset.searchText || '',
+        tagsRaw,
+        card.dataset.productType || '',
+        card.dataset.productVendor || '',
+        card.textContent || ''
+      ].join(' ');
+
+      const data = {
+        tags: tagsArr,
+        type: (card.dataset.productType || '').trim().toLowerCase(),
+        vendor: (card.dataset.productVendor || '').trim().toLowerCase(),
+        searchText: normaliseSearch(textBits)
+      };
+
+      card._kbData = data;
+      return data;
+    }
+
+    function cardMatchesFilters(card, filtersMap) {
+      const activeRows = Object.keys(filtersMap);
+      const data = getCardData(card);
+
+      // Search must match as well (AND with tag filters)
+      if (searchQuery && data.searchText.indexOf(searchQuery) === -1) {
+        return false;
+      }
+
+      if (!activeRows.length) return true;
+
+      for (let i = 0; i < activeRows.length; i++) {
+        const rowId = activeRows[i];
+        const filter = filtersMap[rowId];
+        if (!filter || !filter.value) continue;
+
+        const value = filter.value;
+
+        if (filter.kind === 'brand') {
+          const matchesBrandInTags = data.tags.some(function(tag) {
+            return tag === value || tag.indexOf(value) !== -1;
+          });
+
+          const matchesBrandInVendor =
+            data.vendor === value || data.vendor.indexOf(value) !== -1;
+
+          if (!matchesBrandInTags && !matchesBrandInVendor) {
+            return false;
+          }
+
+        } else if (filter.kind === 'type') {
+          const matchesTypeInTags = data.tags.some(function(tag) {
+            return tag === value || tag.indexOf(value) !== -1;
+          });
+
+          const matchesTypeInType =
+            data.type === value || data.type.indexOf(value) !== -1;
+
+          if (!matchesTypeInTags && !matchesTypeInType) {
+            return false;
+          }
+        }
+      }
+
+      return true;
+    }
+
+    function updateRowButtonsVisibility() {
+      if (!rowWrappers.length || !productCards.length) return;
+
+      rowWrappers.forEach(function(rowEl, idx) {
+        const rowId = rowEl.dataset.filterRow || '';
+        const buttons = rowEl.querySelectorAll('[data-filter-brand-button], [data-filter-type-button]');
+        if (!rowId || !buttons.length) return;
+
+        // Row 1: always show all buttons
+        if (idx === 0) {
+          buttons.forEach(function(btn) {
+            btn.style.display = '';
+          });
+          return;
+        }
+
+        // Build a map of filters from all previous rows ONLY
+        const baseFilters = {};
+        for (let i = 0; i < idx; i++) {
+          const prevRowEl = rowWrappers[i];
+          const prevRowId = prevRowEl.dataset.filterRow || '';
+          if (prevRowId && rowFilters[prevRowId]) {
+            baseFilters[prevRowId] = rowFilters[prevRowId];
+          }
+        }
+
+        // If no previous filters selected, hide all buttons for this row
+        if (Object.keys(baseFilters).length === 0) {
+          buttons.forEach(function(btn) {
+            btn.style.display = 'none';
+          });
+          return;
+        }
+
+        buttons.forEach(function(btn) {
+          let kind = null;
+          let value = '';
+
+          if (btn.hasAttribute('data-filter-brand-button')) {
+            kind = 'brand';
+            value = (btn.dataset.filterBrand || '').trim();
+          } else if (btn.hasAttribute('data-filter-type-button')) {
+            kind = 'type';
+            value = (btn.dataset.filterType || '').trim();
+          }
+
+          if (!kind || !value) {
+            btn.style.display = 'none';
+            return;
+          }
+
+          // Hypothetical: all previous filters + this button as the filter for this row
+          const testFilters = Object.assign({}, baseFilters);
+          testFilters[rowId] = { kind: kind, value: value };
+
+          const anyMatch = productCards.some(function(card) {
+            return cardMatchesFilters(card, testFilters);
+          });
+
+          btn.style.display = anyMatch ? '' : 'none';
+        });
+      });
+    }
+
+    function updateVisibleRows() {
+      if (!rowWrappers.length) return;
+
+      rowWrappers.forEach(function(rowEl, idx) {
+        const rowId = rowEl.dataset.filterRow || '';
+        if (!rowId) return;
+
+        // Row 1 always visible
+        if (idx === 0) {
+          rowEl.style.display = '';
+          return;
+        }
+
+        // Show this row only if ALL previous rows have a selection
+        let allPrevSelected = true;
+        for (let i = 0; i < idx; i++) {
+          const prevRowId = rowWrappers[i].dataset.filterRow || '';
+          if (prevRowId && !rowFilters[prevRowId]) {
+            allPrevSelected = false;
+            break;
+          }
+        }
+
+        rowEl.style.display = allPrevSelected ? '' : 'none';
+      });
+    }
+
+    function applyFilters() {
+      if (!initialized) return;
+
+      productCards.forEach(function(card) {
+        const show = cardMatchesFilters(card, rowFilters);
+        card.style.display = show ? '' : 'none';
+      });
+
+      updateRowButtonsVisibility();
+      updateVisibleRows();
+    }
+
+    function setupNav() {
+      if (!scroller || !prevBtn || !nextBtn) return;
+
+      function updateNavState() {
+        const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+        const atStart = scroller.scrollLeft <= 5;
+        const atEnd = scroller.scrollLeft >= maxScrollLeft - 5;
+
+        prevBtn.disabled = atStart;
+        nextBtn.disabled = atEnd;
+      }
+
+      const scrollAmount = 320;
+
+      prevBtn.addEventListener('click', function() {
+        scroller.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', function() {
+        scroller.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+
+      scroller.addEventListener('scroll', updateNavState);
+      window.addEventListener('resize', updateNavState);
+      updateNavState();
+    }
+
+    function initWithCards() {
+      productCards = Array.from(section.querySelectorAll('[data-product-card]'));
+      console.log('Filtered section products:', productCards.length);
+      initialized = true;
+
+      setupNav();
+      applyFilters();
+
+      if (typeof pendingFilterAction === 'function') {
+        const fn = pendingFilterAction;
+        pendingFilterAction = null;
+        fn();
+      }
+    }
+
+    function fetchAllPagesAndInit() {
+      if (!collectionHandle) {
+        initWithCards();
+        initializing = false;
+        return;
+      }
+
+      const fetches = [];
+
+      for (let page = 1; page <= maxPages; page++) {
+        const url = '/collections/' + encodeURIComponent(collectionHandle) + '?view=kb-filter-json&page=' + page;
+
+        fetches.push(
+          fetch(url, { credentials: 'same-origin' })
+            .then(function(res) { return res.text(); })
+            .then(function(html) {
+              const temp = document.createElement('div');
+              temp.innerHTML = html;
+
+              const newCards = temp.querySelectorAll('.filtered-brand-collection__product-card');
+              newCards.forEach(function(card) {
+                scroller.appendChild(card);
+              });
+
+              return newCards.length;
+            })
+            .catch(function() {
+              return 0;
+            })
+        );
+      }
+
+      Promise.all(fetches).then(function() {
+        initWithCards();
+      }).finally(function() {
+        initializing = false;
+      });
+    }
+
+    function ensureInitialized(callback) {
+      if (initialized) {
+        callback();
+        return;
+      }
+      pendingFilterAction = callback;
+      if (initializing) return;
+      initializing = true;
+      fetchAllPagesAndInit();
+    }
+
+    // Search input wiring – lazy load all pages on first type
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        searchQuery = normaliseSearch(searchInput.value);
+
+        // When you start typing, clear all filter buttons + logic
+        if (searchQuery.length > 0) {
+          Object.keys(rowFilters).forEach(function(key) {
+            delete rowFilters[key];
+          });
+          rowWrappers.forEach(function(rowEl) {
+            rowEl
+              .querySelectorAll('[data-filter-brand-button], [data-filter-type-button]')
+              .forEach(function(btn) {
+                btn.classList.remove('is-active');
+              });
+          });
+        }
+
+        ensureInitialized(function() {
+          applyFilters();
+        });
+      });
+    }
+
+    /* ---------- WIRE UP BUTTON CLICKS (LAZY LOAD ON FIRST CLICK) ---------- */
+    rowWrappers.forEach(function(rowEl) {
+      const rowId = rowEl.dataset.filterRow || '';
+      if (!rowId) return;
+
+      const buttons = rowEl.querySelectorAll('[data-filter-brand-button], [data-filter-type-button]');
+      const rowIndex = rowWrappers.indexOf(rowEl);
+
+      buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          ensureInitialized(function() {
+            const isActive = btn.classList.contains('is-active');
+
+            // Clear all buttons in this row first
+            buttons.forEach(function(b) { b.classList.remove('is-active'); });
+
+            if (isActive) {
+              // Turning off this row's filter entirely
+              delete rowFilters[rowId];
+            } else {
+              // Activate this button
+              btn.classList.add('is-active');
+
+              if (btn.hasAttribute('data-filter-brand-button')) {
+                const val = (btn.dataset.filterBrand || '').trim();
+                if (val) {
+                  rowFilters[rowId] = { kind: 'brand', value: val };
+                } else {
+                  delete rowFilters[rowId];
+                }
+              } else if (btn.hasAttribute('data-filter-type-button')) {
+                const val = (btn.dataset.filterType || '').trim();
+                if (val) {
+                  rowFilters[rowId] = { kind: 'type', value: val };
+                } else {
+                  delete rowFilters[rowId];
+                }
+              }
+            }
+
+            // Clear filters & active states for all later rows
+            rowWrappers.forEach(function(otherRowEl, idx) {
+              if (idx <= rowIndex) return;
+
+              const otherRowId = otherRowEl.dataset.filterRow || '';
+              if (!otherRowId) return;
+
+              delete rowFilters[otherRowId];
+
+              const otherButtons = otherRowEl.querySelectorAll('[data-filter-brand-button], [data-filter-type-button]');
+              otherButtons.forEach(function(b) { b.classList.remove('is-active'); });
+            });
+
+            applyFilters();
+          });
+        });
+      });
+    });
+
+    // Initial: only row1 visible, others hidden until filters selected
+    updateVisibleRows();
+  });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Filtered brand collection",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show (max 1000)",
+      "min": 10,
+      "max": 1000,
+      "step": 10,
+      "default": 200
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner link"
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Section title",
+      "default": "Shop our best deals"
+    },
+    {
+      "type": "select",
+      "id": "banner_position",
+      "label": "Banner position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter",
+      "name": "Tag / brand filter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "filter_label",
+          "label": "Label",
+          "default": "Intel"
+        },
+        {
+          "type": "text",
+          "id": "filter_tag",
+          "label": "Product tag to match",
+          "default": "Intel"
+        },
+        {
+          "type": "image_picker",
+          "id": "filter_image",
+          "label": "Filter image (icon)"
+        },
+        {
+          "type": "select",
+          "id": "filter_row",
+          "label": "Filter row",
+          "options": [
+            { "value": "row1", "label": "Row 1" },
+            { "value": "row2", "label": "Row 2" },
+            { "value": "row3", "label": "Row 3" },
+            { "value": "row4", "label": "Row 4" },
+            { "value": "row5", "label": "Row 5" }
+          ],
+          "default": "row1"
+        }
+      ]
+    },
+    {
+      "type": "type_filter",
+      "name": "Type filter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "type_label",
+          "label": "Label",
+          "default": "Desktop"
+        },
+        {
+          "type": "text",
+          "id": "type_value",
+          "label": "Product type to match",
+          "default": "Desktop"
+        },
+        {
+          "type": "select",
+          "id": "type_row",
+          "label": "Filter row",
+          "options": [
+            { "value": "row1", "label": "Row 1" },
+            { "value": "row2", "label": "Row 2" },
+            { "value": "row3", "label": "Row 3" },
+            { "value": "row4", "label": "Row 4" },
+            { "value": "row5", "label": "Row 5" }
+          ],
+          "default": "row2"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Filtered brand collection",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

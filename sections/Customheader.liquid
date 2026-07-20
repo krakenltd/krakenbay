@@ -1,0 +1,594 @@
+{% comment %}
+  Kraken Bay custom header section – BackMarket style
+{% endcomment %}
+
+<style>
+  .kb-header-{{ section.id }} {
+    width: 100%;
+    padding: 12px 24px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+    position: relative;   /* create stacking context */
+    z-index: 1000;        /* sits above the mega-banner */
+  }
+
+  .kb-header-{{ section.id }}__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  /* MOBILE BURGER WRAPPER (we'll show only on mobile) */
+  .kb-header-{{ section.id }}__drawer {
+    display: none;
+    align-items: center;
+    margin-right: 8px;
+  }
+
+  .kb-header-{{ section.id }}__logo img {
+    height: auto;
+    max-height: 38px;
+    width: auto;
+    image-rendering: auto;
+  }
+
+  .kb-header-{{ section.id }}__search {
+    flex: 1;
+    max-width: 700px;
+  }
+
+  .kb-header-{{ section.id }}__search-form {
+    position: relative;
+    width: 100%;
+  }
+
+  .kb-header-{{ section.id }}__search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .kb-header-{{ section.id }}__search-input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border-radius: 30px;
+    border: none;
+    background: #e3e4e9;
+    font-size: 16px;
+    outline: none;
+  }
+
+  .kb-header-{{ section.id }}__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .kb-header-{{ section.id }}__pill-btn {
+    padding: 8px 18px;
+    border: 1px solid #000;
+    border-radius: 12px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000;
+    white-space: nowrap;
+    transition: 0.2s;
+  }
+
+  .kb-header-{{ section.id }}__pill-btn:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  .kb-header-{{ section.id }}__help-link {
+    font-size: 15px;
+    text-decoration: none;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .kb-header-{{ section.id }}__help-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Stronger icon sizing */
+  .kb-header-{{ section.id }}__icon-link svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+ @media (max-width: 768px) {
+
+  /* Use grid for perfect centering */
+  .kb-header-{{ section.id }}__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    row-gap: 1px;
+    column-gap: 12px;
+  }
+
+  /* Burger stays left */
+  .kb-header-{{ section.id }}__drawer {
+    display: flex;
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  /* Logo perfectly centered */
+  .kb-header-{{ section.id }}__logo {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Bigger, sharper logo */
+  .kb-header-{{ section.id }}__logo img {
+    max-height: 60px; /* increased from 32px */
+    width: 150px;
+    height: auto;
+  }
+
+  /* Icons stay right */
+  .kb-header-{{ section.id }}__actions {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  /* Search bar full width below everything */
+  .kb-header-{{ section.id }}__search {
+    grid-column: 1 / -1;
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+  }
+
+}
+
+  /* ===========================
+     CUSTOM MOBILE DRAWER
+     =========================== */
+
+  .kb-drawer {
+    position: relative;
+  }
+
+  .kb-drawer__toggle {
+    list-style: none;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .kb-drawer__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Overlay behind panel */
+  .kb-drawer__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out;
+    z-index: 9999;
+  }
+
+  .kb-drawer[open] .kb-drawer__overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Sliding panel */
+  .kb-drawer__panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 82vw;
+    max-width: 420px;
+    background: #ffffff;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.18);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-out;
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+  }
+
+  .kb-drawer[open] .kb-drawer__panel {
+    transform: translateX(0);
+  }
+
+  .kb-drawer__header {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid #eee;
+  }
+
+  .kb-drawer__header-left {
+    flex: 1;
+    padding: 16px 20px;
+    font-weight: 500;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #111;
+  }
+
+  .kb-drawer__header-left img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .kb-drawer__close {
+    width: 64px;
+    border: none;
+    background: #353762;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kb-drawer__close:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: -2px;
+  }
+
+  .kb-drawer__body {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .kb-drawer__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Support row */
+  .kb-drawer__support {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #111;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    background: #f9f9fb;
+  }
+
+  .kb-drawer__support img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .kb-drawer__support:hover {
+    background: #f0f0f3;
+  }
+
+  /* Top-level row (with or without children) */
+  .kb-drawer__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #111;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .kb-drawer__row:hover {
+    background: #f7f7f7;
+  }
+
+  .kb-drawer__row span {
+    text-decoration: none;
+  }
+
+  .kb-drawer__chevron {
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  /* Remove default marker for submenu <summary> */
+  .kb-drawer__item > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .kb-drawer__item > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Submenu */
+  .kb-drawer__submenu {
+    background: #fafafa;
+  }
+
+  .kb-drawer__sub-link {
+    display: block;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .kb-drawer__sub-link:hover {
+    background: #f0f0f0;
+  }
+
+  @media (min-width: 769px) {
+    /* Kill drawer completely on desktop */
+    .kb-header-{{ section.id }}__drawer {
+      display: none;
+    }
+  }
+</style>
+
+<header class="kb-header-{{ section.id }}">
+  <div class="kb-header-{{ section.id }}__inner">
+
+    <!-- MOBILE BURGER / CUSTOM DRAWER -->
+    <div class="kb-header-{{ section.id }}__drawer">
+      {% if section.settings.menu != blank %}
+        <details class="kb-drawer">
+          <summary class="kb-drawer__toggle" aria-label="Toggle menu">
+            <span class="svg-wrapper" aria-hidden="true">
+              <!-- BOLDER BURGER ICON -->
+              <svg aria-hidden="true" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.25 7A.75.75 0 0 1 3 6.25h18a.75.75 0 0 1 0 1.5H3A.75.75 0 0 1 2.25 7m0 10A.75.75 0 0 1 3 16.25h18a.75.75 0 0 1 0 1.5H3A.75.75 0 0 1 2.25 17M3 11.25a.75.75 0 0 0 0 1.5h18a.75.75 0 0 0 0-1.5H3"></path>
+              </svg>
+            </span>
+          </summary>
+
+          <div class="kb-drawer__overlay"></div>
+
+          <nav class="kb-drawer__panel" aria-label="Mobile menu">
+            <div class="kb-drawer__header">
+              <a href="https://www.krakenbay.co.uk/pages/contact" class="kb-drawer__header-left">
+                <img
+                  src="https://drive.google.com/thumbnail?id=1lAF-A9xYSqLYQzTowMRdcvXuhZHflMpt&sz=w2000"
+                  width="22"
+                  height="22"
+                  style="width:22px; height:22px;"
+                  alt="Support icon"
+                >
+                <span>Contact support</span>
+              </a>
+              <button type="button" class="kb-drawer__close" aria-label="Close menu">
+                ×
+              </button>
+            </div>
+
+            <div class="kb-drawer__body">
+              <ul class="kb-drawer__list">
+                {% for link in section.settings.menu.links %}
+                  <li>
+                    {% if link.links != blank %}
+                      <details class="kb-drawer__item">
+                        <summary class="kb-drawer__row">
+                          <span>{{ link.title }}</span>
+                          <span class="kb-drawer__chevron">▾</span>
+                        </summary>
+                        <div class="kb-drawer__submenu">
+                          {% for sublink in link.links %}
+                            <a href="{{ sublink.url }}" class="kb-drawer__sub-link">
+                              {{ sublink.title }}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </details>
+                    {% else %}
+                      <a href="{{ link.url }}" class="kb-drawer__row kb-drawer__row--leaf">
+                        <span>{{ link.title }}</span>
+                      </a>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </nav>
+        </details>
+      {% endif %}
+    </div>
+
+    <!-- LOGO -->
+    <div class="kb-header-{{ section.id }}__logo">
+      <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+        {% if section.settings.logo != blank %}
+          {{ section.settings.logo
+            | image_url: width: 600
+            | image_tag:
+              widths: '200, 300, 400, 600',
+              sizes: '(max-width: 768px) 120px, 160px',
+              class: 'header__heading-logo motion-reduce',
+              loading: 'eager'
+          }}
+        {% else %}
+          <span class="h2">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- BIG SEARCH BAR -->
+    <div class="kb-header-{{ section.id }}__search">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="kb-header-{{ section.id }}__search-form">
+        <span class="kb-header-{{ section.id }}__search-icon">
+          <span class="svg-wrapper">
+            <svg fill="none" class="icon icon-search" viewBox="0 0 18 19">
+              <path fill="currentColor" fill-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 1 1 2.85 3.5a5.784 5.784 0 0 1 8.18 8.18m.26 1.12a6.78 6.78 0 1 1 .72-.7l5.4 5.4a.5.5 0 1 1-.71.7z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </span>
+        <input
+          type="search"
+          name="q"
+          placeholder="{{ section.settings.search_placeholder }}"
+          class="kb-header-{{ section.id }}__search-input"
+        >
+      </form>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="kb-header-{{ section.id }}__actions">
+
+      {% if section.settings.pill_link != blank %}
+        <a href="{{ section.settings.pill_link }}" class="kb-header-{{ section.id }}__pill-btn">
+          {{ section.settings.pill_text }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.help_link != blank %}
+        <a href="{{ section.settings.help_link }}" class="kb-header-{{ section.id }}__help-link">
+          {{ section.settings.help_text }}
+        </a>
+      {% endif %}
+
+      <!-- ACCOUNT ICON (BOLDER) -->
+      <a href="{{ routes.account_url }}" class="header__icon header__icon--account link focus-inset kb-header-{{ section.id }}__icon-link" rel="nofollow">
+        <account-icon>
+          <span class="svg-wrapper">
+            <svg aria-hidden="true" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M12 3.25a4.75 4.75 0 1 0 0 9.5 4.75 4.75 0 0 0 0-9.5M8.75 8a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0" clip-rule="evenodd"></path>
+              <path d="M8 14.25A4.75 4.75 0 0 0 3.25 19v1a.75.75 0 0 0 1.5 0v-1A3.25 3.25 0 0 1 8 15.75h8A3.25 3.25 0 0 1 19.25 19v1a.75.75 0 0 0 1.5 0v-1A4.75 4.75 0 0 0 16 14.25H8"></path>
+            </svg>
+          </span>
+        </account-icon>
+        <span class="visually-hidden">Log in</span>
+      </a>
+
+      <!-- CART ICON (BOLDER - BASKET) -->
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset kb-header-{{ section.id }}__icon-link" id="cart-icon-bubble" role="button" aria-haspopup="dialog">
+        <span class="svg-wrapper">
+          <svg aria-hidden="true" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M7.309 6.25a4.751 4.751 0 0 1 9.382 0H18.5a1.25 1.25 0 0 1 1.25 1.25v11a3.25 3.25 0 0 1-3.25 3.25h-9a3.25 3.25 0 0 1-3.25-3.25v-11A1.25 1.25 0 0 1 5.5 6.25h1.809m1.528 0a3.251 3.251 0 0 1 6.326 0H8.837M5.75 18.5V7.75h12.5V18.5a1.75 1.75 0 0 1-1.75 1.75h-9a1.75 1.75 0 0 1-1.75-1.75" clip-rule="evenodd"></path>
+          </svg>
+        </span>
+        <span class="visually-hidden">Cart</span>
+      </a>
+
+    </div>
+
+  </div>
+</header>
+
+<script>
+  (function() {
+    var drawer = document.querySelector('.kb-header-{{ section.id }} .kb-drawer');
+    if (!drawer) return;
+
+    var overlay  = drawer.querySelector('.kb-drawer__overlay');
+    var closeBtn = drawer.querySelector('.kb-drawer__close');
+
+    function updateHtmlClass() {
+      if (drawer.hasAttribute('open')) {
+        document.documentElement.classList.add('kb-drawer-open');
+      } else {
+        document.documentElement.classList.remove('kb-drawer-open');
+      }
+    }
+
+    function closeDrawer() {
+      if (drawer.hasAttribute('open')) {
+        drawer.removeAttribute('open');
+        updateHtmlClass();
+      }
+    }
+
+    // Fires whenever <details> opens/closes
+    drawer.addEventListener('toggle', updateHtmlClass);
+
+    if (overlay) {
+      overlay.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeDrawer();
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeDrawer();
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Kraken header",
+  "class": "kb-header-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Mobile menu (drawer)"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "What are you looking for?"
+    },
+    {
+      "type": "text",
+      "id": "pill_text",
+      "label": "Pill button text",
+      "default": "Free IT collection"
+    },
+    {
+      "type": "url",
+      "id": "pill_link",
+      "label": "Pill button link"
+    },
+    {
+      "type": "text",
+      "id": "help_text",
+      "label": "Help link text",
+      "default": "Need help?"
+    },
+    {
+      "type": "url",
+      "id": "help_link",
+      "label": "Help link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kraken header"
+    }
+  ]
+}
+{% endschema %}

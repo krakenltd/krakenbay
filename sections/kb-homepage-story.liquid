@@ -1,0 +1,96 @@
+{{ 'kb-premium.css' | asset_url | stylesheet_tag }}
+
+<section class="kb-story" aria-labelledby="kb-story-title-{{ section.id }}">
+  <div class="kb-story__hero page-width">
+    <div class="kb-story__eyebrow"><span></span>{{ section.settings.eyebrow }}</div>
+    <div class="kb-story__hero-grid">
+      <div>
+        <h1 id="kb-story-title-{{ section.id }}">{{ section.settings.heading }}</h1>
+        <p class="kb-story__lede">{{ section.settings.intro }}</p>
+        <div class="kb-story__actions">
+          <a class="button kb-button--primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>
+          <a class="button button--secondary kb-button--secondary" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
+        </div>
+      </div>
+      <div class="kb-story__promise">
+        <span class="kb-story__promise-kicker">The Kraken Bay promise</span>
+        <strong>Serious tech.<br>Second life.</strong>
+        <p>Professionally checked components, honest condition information and real UK support.</p>
+      </div>
+    </div>
+
+    <div class="kb-story__trust" role="list" aria-label="Reasons to shop with Kraken Bay">
+      <div role="listitem"><span class="kb-icon">✓</span><strong>Fully tested</strong><small>Function and stability checked</small></div>
+      <div role="listitem"><span class="kb-icon">↻</span><strong>3-month warranty</strong><small>Help if something goes wrong</small></div>
+      <div role="listitem"><span class="kb-icon">→</span><strong>Tracked delivery</strong><small>Fast UK dispatch</small></div>
+      <div role="listitem"><span class="kb-icon">⌁</span><strong>UK support</strong><small>Advice from a real team</small></div>
+    </div>
+  </div>
+
+  <div class="kb-story__guide page-width">
+    <div class="kb-section-heading">
+      <span class="kb-kicker">Buy with confidence</span>
+      <h2>Find the right component, first time.</h2>
+      <p>Upgrading should feel exciting—not like decoding a specification sheet. Use these quick checks before ordering.</p>
+    </div>
+    <div class="kb-guide-grid">
+      <article><span>01</span><h3>Identify your device</h3><p>Find the manufacturer and exact model number on your device label or in system settings.</p></article>
+      <article><span>02</span><h3>Match the specification</h3><p>Check the memory generation, storage interface, processor socket, form factor and supported capacity.</p></article>
+      <article><span>03</span><h3>Compare the listing</h3><p>Read the title, description and condition carefully. Product photos and part numbers help confirm the match.</p></article>
+      <article><span>04</span><h3>Ask before ordering</h3><p>Still unsure? Contact our UK team with your model number and the part you are considering.</p></article>
+    </div>
+    <div class="kb-guide-note">
+      <div><strong>Compatibility tip</strong><p>Two components can look identical but use different standards. Never rely on appearance alone.</p></div>
+      <a href="{{ section.settings.help_link }}">Get compatibility help <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="kb-story__process-wrap">
+    <div class="kb-story__process page-width">
+      <div class="kb-section-heading kb-section-heading--light">
+        <span class="kb-kicker">What refurbished means here</span>
+        <h2>A second life, earned through testing.</h2>
+        <p>We prepare previously used hardware for dependable everyday use and clearly describe what you are buying.</p>
+      </div>
+      <div class="kb-process-grid">
+        <article><span>01</span><h3>Recover</h3><p>Useful technology is diverted from unnecessary disposal.</p></article>
+        <article><span>02</span><h3>Inspect</h3><p>Each item is visually checked and identified by specification.</p></article>
+        <article><span>03</span><h3>Test</h3><p>Core functionality and stability are verified before listing.</p></article>
+        <article><span>04</span><h3>Prepare</h3><p>Products are cleaned, described honestly and packed securely.</p></article>
+      </div>
+    </div>
+  </div>
+
+  <div class="kb-story__impact page-width">
+    <div class="kb-impact-card">
+      <span class="kb-kicker">Better value. Less waste.</span>
+      <h2>Keep capable technology in use.</h2>
+      <p>Buying refurbished extends the useful life of existing hardware, reduces electronic waste and avoids replacing equipment that still has plenty to give.</p>
+      <a class="button kb-button--primary" href="{{ section.settings.primary_link }}">Shop refurbished tech</a>
+    </div>
+    <div class="kb-impact-facts">
+      <div><span>01</span><strong>Extend product life</strong><p>Get more value from hardware that has already been manufactured.</p></div>
+      <div><span>02</span><strong>Reduce e-waste</strong><p>Keep working components in circulation and away from landfill.</p></div>
+      <div><span>03</span><strong>Upgrade affordably</strong><p>Improve or repair your setup without paying the new-product premium.</p></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kraken Bay story",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Refurbished technology, done properly" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Premium tech. Without the premium price." },
+    { "type": "textarea", "id": "intro", "label": "Introduction", "default": "Tested components and devices that deliver the performance you need, backed by straightforward UK support." },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop all tech" },
+    { "type": "url", "id": "primary_link", "label": "Primary link", "default": "/collections/all" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Explore components" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary link", "default": "/collections" },
+    { "type": "url", "id": "help_link", "label": "Compatibility help link", "default": "/pages/contact" }
+  ],
+  "presets": [{ "name": "Kraken Bay story" }]
+}
+{% endschema %}

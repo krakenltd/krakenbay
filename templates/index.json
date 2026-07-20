@@ -1,0 +1,770 @@
+﻿{
+    "sections":  {
+                     "custom_liquid_YrMFjj":  {
+                                                  "type":  "custom-liquid",
+                                                  "name":  "t:sections.custom-liquid.presets.name",
+                                                  "settings":  {
+                                                                   "custom_liquid":  "\u003cstyle\u003e\n/* HIDE BY DEFAULT (desktop \u0026 tablet) */\n.kb-mobile-announcement {\n  display: none;\n  background: #34b3a8;\n  color: #ffffff;\n  font-weight: 500;\n  font-size: 15px;\n  padding: 10px 40px 10px 16px;\n  line-height: 1.3;\n  position: relative;\n\n  display: none; /* important: stays hidden unless mobile */\n}\n\n/* Show only on mobile */\n@media (max-width: 768px) {\n  .kb-mobile-announcement {\n    display: flex;\n    align-items: center;\n    justify-content: flex-start;\n    text-align: left;\n  }\n}\n\n.kb-mobile-announcement span:first-child {\n  margin-right: auto;\n}\n\n/* Close button */\n.kb-close {\n  position: absolute;\n  right: 12px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n  font-size: 18px;\n  font-weight: bold;\n}\n\u003c/style\u003e\n\n\u003cdiv class=\"kb-mobile-announcement\" id=\"kbBanner\"\u003e\n  \u003cspan\u003eðŸ’» Dive into seriously good tech\u003c/span\u003e\n  \u003cspan class=\"kb-close\" onclick=\"document.getElementById(\u0027kbBanner\u0027).style.display=\u0027none\u0027\"\u003e\u0026times;\u003c/span\u003e\n\u003c/div\u003e",
+                                                                   "color_scheme":  "",
+                                                                   "padding_top":  0,
+                                                                   "padding_bottom":  0
+                                                               }
+                                              },
+                     "custombanner_f7G4nQ":  {
+                                                 "type":  "Custombanner",
+                                                 "blocks":  {
+                                                                "slide_E9rNjT":  {
+                                                                                     "type":  "slide",
+                                                                                     "settings":  {
+                                                                                                      "desktop_image":  "shopify://shop_images/BANNER_83138083-6648-4062-9785-e2938771ce56.png",
+                                                                                                      "mobile_image":  "shopify://shop_images/MOBILEBANNER1_f15f3d52-22a7-47ab-99c3-e668c995b3e5.png",
+                                                                                                      "link":  ""
+                                                                                                  }
+                                                                                 },
+                                                                "slide_P94jQh":  {
+                                                                                     "type":  "slide",
+                                                                                     "settings":  {
+                                                                                                      "desktop_image":  "shopify://shop_images/BANNER2_02103ca7-4b59-48de-9c94-ab46e482230f.png",
+                                                                                                      "mobile_image":  "shopify://shop_images/MOBILEBANNER2.png",
+                                                                                                      "link":  ""
+                                                                                                  }
+                                                                                 },
+                                                                "slide_UbiaDX":  {
+                                                                                     "type":  "slide",
+                                                                                     "settings":  {
+                                                                                                      "desktop_image":  "shopify://shop_images/BANNER3_9cb531c2-f7a9-41ee-a33d-558e6696e1cf.png",
+                                                                                                      "mobile_image":  "shopify://shop_images/MOBILEBANNER3_171ac01e-3dfa-4bbf-b111-edea350fb327.png",
+                                                                                                      "link":  ""
+                                                                                                  }
+                                                                                 }
+                                                            },
+                                                 "block_order":  [
+                                                                     "slide_E9rNjT",
+                                                                     "slide_P94jQh",
+                                                                     "slide_UbiaDX"
+                                                                 ],
+                                                 "name":  "Responsive image banner",
+                                                 "settings":  {
+                                                                  "color_scheme":  "",
+                                                                  "auto_rotate":  true,
+                                                                  "auto_rotate_interval":  5,
+                                                                  "padding_top":  0,
+                                                                  "padding_bottom":  0
+                                                              }
+                                             },
+                     "custom_liquid_TUgQYy":  {
+                                                  "type":  "custom-liquid",
+                                                  "name":  "t:sections.custom-liquid.presets.name",
+                                                  "settings":  {
+                                                                   "custom_liquid":  "\u003csection class=\"kb-hero\"\u003e\n  \u003cdiv class=\"kb-hero__inner\"\u003e\n    \u003cdiv class=\"kb-hero__text\"\u003e\n      \u003ch1\u003ePremium Tech. Minus the Premium.\u003c/h1\u003e\n      \u003cp\u003eExplore expertly refurbished devices and components for a fraction of the cost.\u003c/p\u003e\n    \u003c/div\u003e\n\n    \u003cdiv class=\"kb-hero__features\"\u003e\n      \u003c!-- Warranty --\u003e\n      \u003cdiv class=\"kb-feature\"\u003e\n        \u003cdiv class=\"kb-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=1PTZldbOlgpsQPcGd9uPakCDJRw-27hRd\u0026sz=w2000\" alt=\"Warranty icon\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-feature__text\"\u003e\n          \u003cstrong\u003e3-month warranty\u003c/strong\u003e\n          \u003cspan\u003eAll items come with a 3-month warranty.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      \u003c!-- Tested --\u003e\n      \u003cdiv class=\"kb-feature\"\u003e\n        \u003cdiv class=\"kb-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=1BZ86LugvXIbt8gydQLK3H08QViX_5HHZ\u0026sz=w2000\" alt=\"Tested icon\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-feature__text\"\u003e\n          \u003cstrong\u003eFully tested\u003c/strong\u003e\n          \u003cspan\u003eAll items fully tested to industry standards.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      \u003c!-- UK customer service --\u003e\n      \u003cdiv class=\"kb-feature\"\u003e\n        \u003cdiv class=\"kb-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=1lAF-A9xYSqLYQzTowMRdcvXuhZHflMpt\u0026sz=w2000\" alt=\"UK customer service icon\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-feature__text\"\u003e\n          \u003cstrong\u003eUK customer service\u003c/strong\u003e\n          \u003cspan\u003eFriendly support from our UK-based team.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      \u003c!-- Fast tracked shipping --\u003e\n      \u003cdiv class=\"kb-feature\"\u003e\n        \u003cdiv class=\"kb-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=1XKxrw7Nck3mCWhin0FAAVdSDmGZ0-KHF\u0026sz=w2000\" alt=\"Fast shipping icon\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-feature__text\"\u003e\n          \u003cstrong\u003eFast-tracked shipping\u003c/strong\u003e\n          \u003cspan\u003eFast-tracked shipping on all orders.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n\n\n\u003cstyle\u003e\n  .kb-hero {\n    background: #f3f4f7;\n    padding: 60px 20px 40px;\n  }\n\n  .kb-hero__inner {\n    max-width: 1200px;\n    margin: 0 auto;\n  }\n\n  .kb-hero__text {\n    text-align: center;\n    margin-bottom: 32px;\n  }\n\n  .kb-hero__text h1 {\n    font-size: 48px;\n    line-height: 1.1;\n    margin: 0 0 16px;\n    font-weight: 700;\n  }\n\n  .kb-hero__text p {\n    font-size: 18px;\n    margin: 0;\n  }\n\n  .kb-hero__features {\n    margin-top: 32px;\n    background: #e6e8ee;\n    border-radius: 24px;\n    padding: 18px 24px;\n    display: flex;\n    justify-content: space-between;\n    gap: 16px;\n    flex-wrap: wrap;\n  }\n\n  .kb-feature {\n    flex: 1 1 220px;\n    display: flex;\n    align-items: center;\n    gap: 14px;\n    min-width: 0;\n  }\n\n  .kb-feature__icon {\n    width: 44px;\n    height: 44px;\n    border-radius: 14px;\n    background: #fff;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n\n  .kb-feature__icon img {\n    max-width: 60%;\n    max-height: 60%;\n  }\n\n  .kb-feature__text {\n    display: flex;\n    flex-direction: column;\n    font-size: 14px;\n  }\n\n  .kb-feature__text strong {\n    font-size: 15px;\n    margin-bottom: 2px;\n  }\n\n  .kb-feature__text span {\n    opacity: 0.8;\n  }\n\n  @media (max-width: 768px) {\n    .kb-hero {\n      padding: 40px 16px 28px;\n    }\n\n    .kb-hero__text h1 {\n      font-size: 32px;\n    }\n\n    .kb-hero__text p {\n      font-size: 16px;\n    }\n\n    .kb-hero__features {\n      padding: 16px;\n      border-radius: 18px;\n    }\n\n    .kb-feature {\n      flex: 1 1 100%;\n    }\n  }\n\u003c/style\u003e",
+                                                                   "color_scheme":  "",
+                                                                   "padding_top":  0,
+                                                                   "padding_bottom":  0
+                                                               }
+                                              },
+                     "collection_list_b6j9wb":  {
+                                                    "type":  "collection-list",
+                                                    "blocks":  {
+                                                                   "featured_collection_xMJqFc":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "internal-ssd-drives"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_bFAEYf":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "desktop-memory"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_fQUHGb":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "processors"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_8NL6PP":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "dvd-drives"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_JhQrtz":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "laptop-memory"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_nz7ebB":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "wifi-cards"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_QBJiL8":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "cables"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_tc7Hyc":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "internal-hard-drives"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_g47fxq":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "cooling"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_narXBa":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "displays-monitor-parts"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_ceBBER":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "graphics-expansion-cards"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_CycCfY":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "laptop-parts"
+                                                                                                                   }
+                                                                                                  }
+                                                               },
+                                                    "block_order":  [
+                                                                        "featured_collection_xMJqFc",
+                                                                        "featured_collection_bFAEYf",
+                                                                        "featured_collection_fQUHGb",
+                                                                        "featured_collection_8NL6PP",
+                                                                        "featured_collection_JhQrtz",
+                                                                        "featured_collection_nz7ebB",
+                                                                        "featured_collection_QBJiL8",
+                                                                        "featured_collection_tc7Hyc",
+                                                                        "featured_collection_g47fxq",
+                                                                        "featured_collection_narXBa",
+                                                                        "featured_collection_ceBBER",
+                                                                        "featured_collection_CycCfY"
+                                                                    ],
+                                                    "custom_css":  [
+                                                                       ".collection-list .collection-card-wrapper .card {position: relative;}",
+                                                                       ".collection-list .collection-card-wrapper .card__content {position: absolute; inset: 0; pointer-events: none;}",
+                                                                       ".collection-list .collection-card-wrapper .card__heading {margin: 0;}",
+                                                                       ".collection-list .collection-card-wrapper .card__heading a {display: block; width: 100%; height: 100%; text-indent: -9999px; /* hides the text off-screen */ pointer-events: auto;}",
+                                                                       ".collection-list .collection-card-wrapper .card__heading .icon-wrap {display: none;}"
+                                                                   ],
+                                                    "name":  "t:sections.collection-list.presets.name",
+                                                    "settings":  {
+                                                                     "title":  "\u003cstrong\u003eShop Our Expertly Refurbished Components\u003c/strong\u003e",
+                                                                     "heading_size":  "h2",
+                                                                     "image_ratio":  "square",
+                                                                     "columns_desktop":  4,
+                                                                     "color_scheme":  "",
+                                                                     "show_view_all":  false,
+                                                                     "columns_mobile":  "2",
+                                                                     "swipe_on_mobile":  false,
+                                                                     "padding_top":  36,
+                                                                     "padding_bottom":  36
+                                                                 }
+                                                },
+                     "custom_collection_section_6mmGaM":  {
+                                                              "type":  "customCollectionSection",
+                                                              "blocks":  {
+                                                                             "filter_CUpPik":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "AMD",
+                                                                                                                    "filter_tag":  "AMD",
+                                                                                                                    "filter_image":  "shopify://shop_images/AMD.png",
+                                                                                                                    "filter_row":  "row1"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_tWTMrP":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "Intel",
+                                                                                                                    "filter_tag":  "Intel",
+                                                                                                                    "filter_image":  "shopify://shop_images/INTEL.png",
+                                                                                                                    "filter_row":  "row1"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_GDmLwj":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "AM2",
+                                                                                                                    "filter_tag":  "AM2",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_yCaaHp":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "AM2+",
+                                                                                                                    "filter_tag":  "AM2+",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_LmmpVk":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "AM3",
+                                                                                                                    "filter_tag":  "AM3",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_FCfzHy":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "AM3+",
+                                                                                                                    "filter_tag":  "AM3+",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_k6BXjj":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "AM4",
+                                                                                                                    "filter_tag":  "AM4",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_VqHeq7":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "AM5",
+                                                                                                                    "filter_tag":  "AM5",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_BChixW":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "FCPGA988",
+                                                                                                                    "filter_tag":  "FCPGA988",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_ahkqpW":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "FM1",
+                                                                                                                    "filter_tag":  "FM1",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_78MLjc":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "FM2",
+                                                                                                                    "filter_tag":  "FM2",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_3JgYVE":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "FM2+",
+                                                                                                                    "filter_tag":  "FM2+",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_YNkDi3":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "FS1",
+                                                                                                                    "filter_tag":  "FS1",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_VYtxPa":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA1150",
+                                                                                                                    "filter_tag":  "LGA1150",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_V4R4bF":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA1151",
+                                                                                                                    "filter_tag":  "LGA1151",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_JmDPjA":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA1155",
+                                                                                                                    "filter_tag":  "LGA1155",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_yfWdbV":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA1200",
+                                                                                                                    "filter_tag":  "LGA1200",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_NEYEji":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA1700",
+                                                                                                                    "filter_tag":  "LGA1700",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_jhTTcF":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA1851",
+                                                                                                                    "filter_tag":  "LGA1851",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_4WwgkD":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA2011",
+                                                                                                                    "filter_tag":  "LGA2011",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_CNPr3Q":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA2066",
+                                                                                                                    "filter_tag":  "LGA2066",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_kqDFKV":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "LGA775",
+                                                                                                                    "filter_tag":  "LGA775",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_gGA7fW":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "Mobile-PGA/BGA",
+                                                                                                                    "filter_tag":  "Mobile-PGA/BGA",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_UTWUjC":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "mPGA478C",
+                                                                                                                    "filter_tag":  "mPGA478C",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_z3U7fP":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "PGA478",
+                                                                                                                    "filter_tag":  "PGA478",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_GmeQcL":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "Socket 479",
+                                                                                                                    "filter_tag":  "Socket 479",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_KWhAN8":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "Socket G2",
+                                                                                                                    "filter_tag":  "Socket G2",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_GFzAid":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "Socket P",
+                                                                                                                    "filter_tag":  "Socket P",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_pEBexk":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "sTR5",
+                                                                                                                    "filter_tag":  "sTR5",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_wbTRKm":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "sTRX4",
+                                                                                                                    "filter_tag":  "sTRX4",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_Vr3DqP":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "sWRX8",
+                                                                                                                    "filter_tag":  "sWRX8",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               },
+                                                                             "filter_k3bTw8":  {
+                                                                                                   "type":  "filter",
+                                                                                                   "settings":  {
+                                                                                                                    "filter_label":  "TR4",
+                                                                                                                    "filter_tag":  "TR4",
+                                                                                                                    "filter_row":  "row2"
+                                                                                                                }
+                                                                                               }
+                                                                         },
+                                                              "block_order":  [
+                                                                                  "filter_CUpPik",
+                                                                                  "filter_tWTMrP",
+                                                                                  "filter_GDmLwj",
+                                                                                  "filter_yCaaHp",
+                                                                                  "filter_LmmpVk",
+                                                                                  "filter_FCfzHy",
+                                                                                  "filter_k6BXjj",
+                                                                                  "filter_VqHeq7",
+                                                                                  "filter_BChixW",
+                                                                                  "filter_ahkqpW",
+                                                                                  "filter_78MLjc",
+                                                                                  "filter_3JgYVE",
+                                                                                  "filter_YNkDi3",
+                                                                                  "filter_VYtxPa",
+                                                                                  "filter_V4R4bF",
+                                                                                  "filter_JmDPjA",
+                                                                                  "filter_yfWdbV",
+                                                                                  "filter_NEYEji",
+                                                                                  "filter_jhTTcF",
+                                                                                  "filter_4WwgkD",
+                                                                                  "filter_CNPr3Q",
+                                                                                  "filter_kqDFKV",
+                                                                                  "filter_gGA7fW",
+                                                                                  "filter_UTWUjC",
+                                                                                  "filter_z3U7fP",
+                                                                                  "filter_GmeQcL",
+                                                                                  "filter_KWhAN8",
+                                                                                  "filter_GFzAid",
+                                                                                  "filter_pEBexk",
+                                                                                  "filter_wbTRKm",
+                                                                                  "filter_Vr3DqP",
+                                                                                  "filter_k3bTw8"
+                                                                              ],
+                                                              "name":  "Filtered brand collection",
+                                                              "settings":  {
+                                                                               "collection":  "processors",
+                                                                               "products_to_show":  1000,
+                                                                               "banner_image":  "shopify://shop_images/INTELAMDONTHEBEACH.png",
+                                                                               "banner_link":  "",
+                                                                               "banner_heading":  "Shop our CPUs",
+                                                                               "banner_position":  "left"
+                                                                           }
+                                                          },
+                     "custom_liquid_EUJ7dJ":  {
+                                                  "type":  "custom-liquid",
+                                                  "name":  "t:sections.custom-liquid.presets.name",
+                                                  "settings":  {
+                                                                   "custom_liquid":  "\u003csection class=\"kb-landfill-banner\"\u003e\n  \u003cdiv class=\"kb-landfill-banner__inner\"\u003e\n    \u003c!-- Left: main copy --\u003e\n    \u003cdiv class=\"kb-landfill-banner__copy\"\u003e\n      \u003ch2\u003eKeep tech out of landfill.\u003c/h2\u003e\n      \u003cp\u003e\n        Every device you buy from Kraken Bay is one less item rotting in landfill\n        and one more bargain powering your setup.\n      \u003c/p\u003e\n\n      \u003ca href=\"/collections/all\" class=\"kb-landfill-banner__cta\"\u003e\n        Shop planet-friendly tech\n      \u003c/a\u003e\n    \u003c/div\u003e\n\n    \u003c!-- Right: benefits card --\u003e\n    \u003cdiv class=\"kb-landfill-banner__card\"\u003e\n      \u003c!-- 01: Devices rescued --\u003e\n      \u003cdiv class=\"kb-landfill-feature\"\u003e\n        \u003cdiv class=\"kb-landfill-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=1U-KGXEM3xOpqkp5oluWc-BEnlLF_55Qj\u0026sz=w2000\" alt=\"Device recycle icon\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-landfill-feature__text\"\u003e\n          \u003cstrong\u003eDevices rescued from landfill\u003c/strong\u003e\n          \u003cspan\u003eWe recover and refurbish tech that would otherwise be scrapped.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      \u003c!-- 02: Circular recycling --\u003e\n      \u003cdiv class=\"kb-landfill-feature\"\u003e\n        \u003cdiv class=\"kb-landfill-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=1UmAI0n7qhNcxbUcwNuP1551T4xmwy4Ci\u0026sz=w2000\" alt=\"Recycle logo\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-landfill-feature__text\"\u003e\n          \u003cstrong\u003eCircular tech, not single-use\u003c/strong\u003e\n          \u003cspan\u003eYour purchase keeps quality hardware circulating instead of wasting away.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      \u003c!-- 03: Carbon footprint --\u003e\n      \u003cdiv class=\"kb-landfill-feature\"\u003e\n        \u003cdiv class=\"kb-landfill-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=1IMfykGIC2iPFHqLoYBn0rYgHsGRrcbsB\u0026sz=w2000\" alt=\"Carbon footprint icon\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-landfill-feature__text\"\u003e\n          \u003cstrong\u003eLower carbon footprint\u003c/strong\u003e\n          \u003cspan\u003eBuying refurbished uses far less carbon than manufacturing new devices.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n\n      \u003c!-- 04: Business \u0026 school collections --\u003e\n      \u003cdiv class=\"kb-landfill-feature\"\u003e\n        \u003cdiv class=\"kb-landfill-feature__icon\"\u003e\n          \u003cimg src=\"https://drive.google.com/thumbnail?id=197a2m8eJYoSwocCGmAzIxPwQ-9g4QF_7\u0026sz=w2000\" alt=\"Devices icon\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"kb-landfill-feature__text\"\u003e\n          \u003cstrong\u003eFree UK collections available\u003c/strong\u003e\n          \u003cspan\u003eWork with Kraken IT Recycling to responsibly dispose of old equipment.\u003c/span\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n\n\u003cstyle\u003e\n  .kb-landfill-banner {\n    background: #e7d4ff; /* soft purple like reference */\n    border-radius: 24px;\n    padding: 0; /* padding handled inside */\n    margin: 10px auto;\n    width: 95%;\n    max-width: 1300px;\n  }\n\n  .kb-landfill-banner__inner {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 24px; /* smaller gap so icons side is wider */\n    padding: 50px 32px;\n    flex-wrap: wrap;\n  }\n\n  .kb-landfill-banner__copy {\n    flex: 0 1 35%; /* narrower left */\n  }\n\n  .kb-landfill-banner__card {\n    flex: 0 1 60%; /* wider icons section */\n    background: #fff;\n    border-radius: 22px;\n    padding: 20px 22px;\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);\n  }\n\n  .kb-landfill-banner__copy h2 {\n    font-size: 40px;\n    line-height: 1.1;\n    margin: 0 0 16px;\n    font-weight: 700;\n  }\n\n  .kb-landfill-banner__copy p {\n    font-size: 18px;\n    margin: 0 0 24px;\n    max-width: 420px;\n  }\n\n  .kb-landfill-banner__cta {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    padding: 14px 26px;\n    background: #111;\n    color: #fff;\n    border-radius: 999px;\n    font-size: 16px;\n    font-weight: 600;\n    text-decoration: none;\n    border: 1px solid #111;\n    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;\n  }\n\n  .kb-landfill-banner__cta:hover {\n    background: #fff;\n    color: #111;\n    transform: translateY(-1px);\n  }\n\n  .kb-landfill-feature {\n    display: flex;\n    align-items: flex-start;\n    gap: 12px;\n  }\n\n  .kb-landfill-feature__icon {\n    width: 44px;\n    height: 44px;\n    border-radius: 14px;\n    background: #f3f4ff;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n\n  .kb-landfill-feature__icon img {\n    max-width: 60%;\n    max-height: 60%;\n  }\n\n  .kb-landfill-feature__text {\n    display: flex;\n    flex-direction: column;\n    font-size: 14px;\n  }\n\n  .kb-landfill-feature__text strong {\n    font-size: 15px;\n    margin-bottom: 2px;\n  }\n\n  .kb-landfill-feature__text span {\n    opacity: 0.85;\n  }\n\n  @media (max-width: 900px) {\n    .kb-landfill-banner {\n      width: 90%;\n      border-radius: 16px;\n    }\n\n    .kb-landfill-banner__inner {\n      flex-direction: column;\n      padding: 28px 20px;\n    }\n\n    .kb-landfill-banner__copy {\n      flex: 1 1 100%;\n    }\n\n    .kb-landfill-banner__card {\n      flex: 1 1 100%;\n      width: 100%;\n    }\n\n    .kb-landfill-banner__copy h2 {\n      font-size: 30px;\n    }\n\n    .kb-landfill-banner__copy p {\n      font-size: 16px;\n    }\n  }\n\u003c/style\u003e",
+                                                                   "color_scheme":  "",
+                                                                   "padding_top":  0,
+                                                                   "padding_bottom":  0
+                                                               }
+                                              },
+                     "collection_list_yzaMPq":  {
+                                                    "type":  "collection-list",
+                                                    "blocks":  {
+                                                                   "featured_collection_WqiLwh":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "mechanical-components"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_yi894p":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "motherboard-components"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_t6ygmG":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "motherboards"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_UmQkgh":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "networking-equipment"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_ELddqq":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "peripherals"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_gyUBMi":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "power-charging"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_PMwNHj":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "server-infrastructure"
+                                                                                                                   }
+                                                                                                  },
+                                                                   "featured_collection_QAtYBX":  {
+                                                                                                      "type":  "featured_collection",
+                                                                                                      "settings":  {
+                                                                                                                       "collection":  "wireless-internal-modules"
+                                                                                                                   }
+                                                                                                  }
+                                                               },
+                                                    "block_order":  [
+                                                                        "featured_collection_WqiLwh",
+                                                                        "featured_collection_yi894p",
+                                                                        "featured_collection_t6ygmG",
+                                                                        "featured_collection_UmQkgh",
+                                                                        "featured_collection_ELddqq",
+                                                                        "featured_collection_gyUBMi",
+                                                                        "featured_collection_PMwNHj",
+                                                                        "featured_collection_QAtYBX"
+                                                                    ],
+                                                    "custom_css":  [
+                                                                       ".collection-list .collection-card-wrapper .card {position: relative;}",
+                                                                       ".collection-list .collection-card-wrapper .card__content {position: absolute; inset: 0; pointer-events: none;}",
+                                                                       ".collection-list .collection-card-wrapper .card__heading {margin: 0;}",
+                                                                       ".collection-list .collection-card-wrapper .card__heading a {display: block; width: 100%; height: 100%; text-indent: -9999px; /* hides the text off-screen */ pointer-events: auto;}",
+                                                                       ".collection-list .collection-card-wrapper .card__heading .icon-wrap {display: none;}"
+                                                                   ],
+                                                    "name":  "t:sections.collection-list.presets.name",
+                                                    "settings":  {
+                                                                     "title":  "",
+                                                                     "heading_size":  "h2",
+                                                                     "image_ratio":  "square",
+                                                                     "columns_desktop":  4,
+                                                                     "color_scheme":  "",
+                                                                     "show_view_all":  false,
+                                                                     "columns_mobile":  "2",
+                                                                     "swipe_on_mobile":  false,
+                                                                     "padding_top":  36,
+                                                                     "padding_bottom":  36
+                                                                 }
+                                                },
+                     "featured_collection_eabEdE":  {
+                                                        "type":  "featured-collection",
+                                                        "name":  "t:sections.featured-collection.presets.name",
+                                                        "settings":  {
+                                                                         "collection":  "internal-ssd-drives",
+                                                                         "products_to_show":  6,
+                                                                         "title":  "Did someone say SSD?",
+                                                                         "heading_size":  "h2",
+                                                                         "description":  "",
+                                                                         "show_description":  false,
+                                                                         "description_style":  "body",
+                                                                         "columns_desktop":  6,
+                                                                         "enable_desktop_slider":  false,
+                                                                         "full_width":  false,
+                                                                         "show_view_all":  true,
+                                                                         "view_all_style":  "outline",
+                                                                         "color_scheme":  "",
+                                                                         "image_ratio":  "adapt",
+                                                                         "image_shape":  "default",
+                                                                         "show_secondary_image":  false,
+                                                                         "show_vendor":  false,
+                                                                         "show_rating":  false,
+                                                                         "quick_add":  "none",
+                                                                         "columns_mobile":  "2",
+                                                                         "swipe_on_mobile":  false,
+                                                                         "padding_top":  36,
+                                                                         "padding_bottom":  36
+                                                                     }
+                                                    },
+                     "collapsible_content_mAJFXh":  {
+                                                        "type":  "collapsible-content",
+                                                        "blocks":  {
+                                                                       "collapsible_row_dByjCz":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Why should I buy refurbished instead of new?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eYou get the same performance at a significantly lower price, with less environmental impact, and with professional testing and verification.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_pc3NXE":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Where do your refurbished devices come from?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eMost devices come from business upgrades, offices, and enterprise environments where hardware is regularly replaced despite still working perfectly.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_rkyPre":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Is buying refurbished better for the environment?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eYes. Buying refurbished reduces electronic waste, lowers carbon emissions, and extends the life of existing devices instead of sending them to landfill.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_4TU7kx":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Do refurbished products come with a warranty?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eYes. All Kraken Bay products come with a warranty for peace of mind. If something goes wrong, weâ€™ll repair, replace, or resolve the issue.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_Hn7T7A":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "What condition will my item be in?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eRefurbished items are fully functional and may show minor cosmetic signs of previous use. This does not affect performance. Any condition details will be clearly described.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_W8YcJc":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Do refurbished products last as long as new ones?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eYes. Most hardware lasts many years beyond its initial use. Many refurbished components still have the majority of their usable lifespan remaining.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_pPNDmU":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Is my data safe on refurbished devices?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eYes. Any storage devices are professionally wiped before resale using secure data erasure methods. Your privacy and security are fully protected.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_APhGGG":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "How do you test your devices?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eEach item undergoes functional testing to ensure it works correctly. This includes performance checks, stability testing, and inspection for faults. Only fully working hardware is sold.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_97tgfz":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "What does refurbished mean?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eRefurbished means the device has been previously used but has undergone professional testing, inspection, and cleaning to ensure it works like it should. At Kraken Bay, every item is tested, verified, and prepared for its next life before being sold.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_qLz8Tb":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Is refurbished tech reliable?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eYes. Refurbished tech is often extremely reliable because each component is individually tested. Unlike brand-new products that are mass-produced and rarely individually checked, refurbished items are verified one-by-one before sale.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_P3bPa9":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Why is refurbished tech cheaper?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eRefurbished tech is cheaper because it has already been used, not because it performs worse. Youâ€™re paying for the performance and functionality, not the initial depreciation that happens when devices are first purchased.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  },
+                                                                       "collapsible_row_GXXd7R":  {
+                                                                                                      "type":  "collapsible_row",
+                                                                                                      "settings":  {
+                                                                                                                       "heading":  "Will refurbished parts perform the same as new ones?",
+                                                                                                                       "icon":  "none",
+                                                                                                                       "row_content":  "\u003ch5\u003eYes. Performance is determined by the specifications of the hardware, not whether itâ€™s new or refurbished. A refurbished 16GB RAM module performs exactly the same as a brand-new 16GB module of the same type.\u003c/h5\u003e",
+                                                                                                                       "page":  ""
+                                                                                                                   }
+                                                                                                  }
+                                                                   },
+                                                        "block_order":  [
+                                                                            "collapsible_row_dByjCz",
+                                                                            "collapsible_row_pc3NXE",
+                                                                            "collapsible_row_rkyPre",
+                                                                            "collapsible_row_4TU7kx",
+                                                                            "collapsible_row_Hn7T7A",
+                                                                            "collapsible_row_W8YcJc",
+                                                                            "collapsible_row_pPNDmU",
+                                                                            "collapsible_row_APhGGG",
+                                                                            "collapsible_row_97tgfz",
+                                                                            "collapsible_row_qLz8Tb",
+                                                                            "collapsible_row_P3bPa9",
+                                                                            "collapsible_row_GXXd7R"
+                                                                        ],
+                                                        "name":  "t:sections.collapsible_content.presets.name",
+                                                        "settings":  {
+                                                                         "caption":  "",
+                                                                         "heading":  "Common Questions",
+                                                                         "heading_size":  "h2",
+                                                                         "heading_alignment":  "center",
+                                                                         "layout":  "none",
+                                                                         "container_color_scheme":  "",
+                                                                         "color_scheme":  "",
+                                                                         "open_first_collapsible_row":  true,
+                                                                         "image_ratio":  "adapt",
+                                                                         "desktop_layout":  "image_second",
+                                                                         "padding_top":  36,
+                                                                         "padding_bottom":  36
+                                                                     }
+                                                    },
+                     "kb_homepage_story":  {
+                                                "type":  "kb-homepage-story",
+                                                "settings":  {
+                                                                 "eyebrow":  "Refurbished technology, done properly",
+                                                                 "heading":  "Premium tech. Without the premium price.",
+                                                                 "intro":  "Tested components and devices that deliver the performance you need, backed by straightforward UK support.",
+                                                                 "primary_label":  "Shop all tech",
+                                                                 "primary_link":  "shopify://collections/all",
+                                                                 "secondary_label":  "Explore components",
+                                                                 "secondary_link":  "shopify://collections",
+                                                                 "help_link":  "shopify://pages/contact"
+                                                             }
+                                            }
+                 },
+    "order":  [
+                  "custom_liquid_YrMFjj",
+                  "custombanner_f7G4nQ",
+                  "kb_homepage_story",
+                  "collection_list_b6j9wb",
+                  "custom_collection_section_6mmGaM",
+                  "collection_list_yzaMPq",
+                  "featured_collection_eabEdE",
+                  "collapsible_content_mAJFXh"
+              ]
+}

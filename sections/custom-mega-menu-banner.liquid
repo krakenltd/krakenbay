@@ -1,0 +1,608 @@
+{% comment %}
+  Mega menu banner section for Dawn
+  - Uses a selected Shopify menu
+  - Top level links = main tabs
+  - Second level = column headers
+  - Third level = links under each column
+{% endcomment %}
+
+{% if section.settings.menu != blank and section.settings.menu.links.size > 0 %}
+  <section
+    id="mega-banner-{{ section.id }}"
+    class="mega-banner section"
+  >
+    <div class="mega-banner__inner page-width">
+      {%- assign bg_color = section.settings.bg_color | default: '#00b9b4' -%}
+      {%- assign text_color = section.settings.text_color | default: '#ffffff' -%}
+
+      <!-- Mobile toggle -->
+      <button
+        type="button"
+        class="mega-banner__toggle"
+        aria-expanded="false"
+      >
+        {{ section.settings.toggle_label | default: 'Bananas' }}
+        <span class="mega-banner__toggle-icon" aria-hidden="true">▾</span>
+      </button>
+
+      <!-- Top bar tabs -->
+      <nav class="mega-banner__tabs-wrapper" aria-label="Mega menu">
+        <ul class="mega-banner__tabs" role="tablist">
+          {% for link in section.settings.menu.links %}
+            <li class="mega-banner__tabs-item" role="presentation">
+              <button
+                type="button"
+                class="mega-banner__tab{% if forloop.first %} is-active{% endif %}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-controls="mega-banner-panel-{{ section.id }}-{{ forloop.index0 }}"
+                data-index="{{ forloop.index0 }}"
+                style="--mega-banner-bg: {{ bg_color }}; --mega-banner-text: {{ text_color }};"
+              >
+                {{ link.title }}
+              </button>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <!-- Dropdown area -->
+      <div class="mega-banner__dropdown">
+        {% for link in section.settings.menu.links %}
+          <div class="mega-banner__accordion-item" data-index="{{ forloop.index0 }}">
+            <!-- Mobile accordion header -->
+            <button
+              type="button"
+              class="mega-banner__accordion-trigger"
+              aria-expanded="false"
+            >
+              <span class="mega-banner__accordion-title">{{ link.title }}</span>
+              <span class="mega-banner__accordion-icon" aria-hidden="true">▾</span>
+            </button>
+
+            <div
+              id="mega-banner-panel-{{ section.id }}-{{ forloop.index0 }}"
+              class="mega-banner__panel{% if forloop.first %} is-active{% endif %}"
+              role="tabpanel"
+              aria-labelledby="mega-banner-tab-{{ section.id }}-{{ forloop.index0 }}"
+              data-index="{{ forloop.index0 }}"
+            >
+              {% if link.links.size > 0 %}
+                <div class="mega-banner__panel-inner">
+                  <div class="mega-banner__columns">
+                    {% for child in link.links %}
+                      <div class="mega-banner__column">
+                        <h3 class="mega-banner__column-title">
+                          <a href="{{ child.url }}" class="mega-banner__column-link">
+                            {{ child.title }}
+                          </a>
+                        </h3>
+
+                        {% if child.links.size > 0 %}
+                          <ul class="mega-banner__list">
+                            {% for grandchild in child.links %}
+                              <li class="mega-banner__list-item">
+                                <a href="{{ grandchild.url }}" class="mega-banner__link">
+                                  {{ grandchild.title }}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% else %}
+                <!-- Fallback: if no children, just link to main item -->
+                <div class="mega-banner__panel-inner mega-banner__single-wrapper">
+                  <div class="mega-banner__single">
+                    <a href="{{ link.url }}" class="mega-banner__single-link">
+                      {{ link.title }}
+                    </a>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <style>
+      #mega-banner-{{ section.id }} {
+        --mega-banner-bg: {{ section.settings.bg_color | default: '#00b9b4' }};
+        --mega-banner-text: {{ section.settings.text_color | default: '#ffffff' }};
+        --mega-banner-hover-bg: {{ section.settings.bg_hover_color | default: '#00a2a0' }};
+        --mega-banner-panel-bg: {{ section.settings.panel_bg_color | default: '#ffffff' }};
+        --mega-banner-panel-heading: {{ section.settings.panel_heading_color | default: '#111111' }};
+        --mega-banner-panel-text: {{ section.settings.panel_text_color | default: '#3e3e3e' }};
+        --mega-banner-panel-link: {{ section.settings.panel_link_color | default: '#0066cc' }};
+        --mega-banner-panel-link-hover: {{ section.settings.panel_link_hover_color | default: '#004999' }};
+        --mega-banner-panel-border: {{ section.settings.panel_border_color | default: 'rgba(0,0,0,0.06)' }};
+        width: 100%;
+        position: relative;
+        z-index: 30;
+        -webkit-font-smoothing: antialiased;
+        font-smooth: always;
+      }
+
+      /* Default: hide mobile toggle on desktop */
+      #mega-banner-{{ section.id }} .mega-banner__toggle {
+        display: none;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__inner {
+        max-width: 100%;
+        padding-inline: 0;
+      }
+
+      /* Panels default behaviour (desktop + mobile baseline) */
+      #mega-banner-{{ section.id }} .mega-banner__panel {
+        display: none;
+        background: transparent;
+        color: var(--mega-banner-panel-text);
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__panel.is-active {
+        display: block;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__panel-inner {
+        background: var(--mega-banner-panel-bg);
+        border-radius: 0 0 14px 14px;
+        padding: 1.6rem 2.5rem 2rem;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__panel-inner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.15;
+        pointer-events: none;
+      }
+
+      /* Accordion trigger hidden by default (desktop only uses tabs) */
+      #mega-banner-{{ section.id }} .mega-banner__accordion-trigger {
+        display: none;
+      }
+
+      /* ===== Base dropdown typography (desktop & mobile) ===== */
+
+      #mega-banner-{{ section.id }} .mega-banner__columns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__column {
+        min-width: 180px;
+        max-width: 240px;
+        position: relative;
+        padding: 0.4rem 0.2rem 0.6rem;
+        border-radius: 10px;
+        transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__column::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.3rem;
+        height: 20px;
+        width: 3px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, var(--mega-banner-bg), var(--mega-banner-hover-bg));
+        opacity: 0.7;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__column:hover {
+        background: rgba(0, 0, 0, 0.02);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        transform: translateY(-1px);
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__column-title {
+        margin: 0 0 0.5rem;
+        padding-left: 0.8rem;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__column-title a,
+      #mega-banner-{{ section.id }} .mega-banner__column-link {
+        font-size: 17px;
+        line-height: 1.4;
+        font-weight: 700;
+        color: var(--mega-banner-panel-heading);
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        text-transform: none;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__column-title a:hover {
+        text-decoration: underline;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__list {
+        margin: 0.25rem 0 0;
+        padding-left: 0.8rem;
+        list-style: none;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__list-item {
+        margin-bottom: 0.15rem;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__link,
+      #mega-banner-{{ section.id }} .mega-banner__single-link {
+        font-size: 15px;
+        line-height: 1.7;
+        color: var(--mega-banner-panel-link);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.08rem 0;
+        position: relative;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__link::before,
+      #mega-banner-{{ section.id }} .mega-banner__single-link::before {
+        content: "›";
+        font-size: 11px;
+        opacity: 0.5;
+        transition: transform 0.16s ease, opacity 0.16s ease;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__link:hover::before,
+      #mega-banner-{{ section.id }} .mega-banner__single-link:hover::before {
+        transform: translateX(2px);
+        opacity: 0.9;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__link:hover,
+      #mega-banner-{{ section.id }} .mega-banner__single-link:hover {
+        color: var(--mega-banner-panel-link-hover);
+        text-decoration: underline;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__single-wrapper {
+        padding: 1.2rem 2rem 1.4rem;
+      }
+
+      #mega-banner-{{ section.id }} .mega-banner__single {
+        padding: 0.25rem 0;
+      }
+
+      /* DESKTOP: full-width tabs with hover dropdown */
+      @media screen and (min-width: 990px) {
+        #mega-banner-{{ section.id }} .mega-banner__tabs-wrapper {
+          background: linear-gradient(90deg, var(--mega-banner-bg), #00d8c3);
+          width: 100%;
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__tabs {
+          display: flex;
+          flex-wrap: nowrap;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          width: 100%;
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__tabs-item {
+          flex: 1 1 0;
+          position: relative;
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__tab {
+          border: none;
+          background: transparent;
+          color: var(--mega-banner-text);
+          padding: 0.7rem 2.0rem;
+          font-family: inherit;
+          font-size: 21px;
+          font-weight: 800;
+          cursor: pointer;
+          white-space: nowrap;
+          transition:
+            background-color 0.18s ease,
+            color 0.18s ease,
+            box-shadow 0.18s ease,
+            transform 0.18s ease;
+          width: 100%;
+          text-align: center;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__tab:hover,
+        #mega-banner-{{ section.id }} .mega-banner__tab:focus-visible {
+          background-color: rgba(0, 0, 0, 0.09);
+          outline: none;
+          box-shadow: inset 0 -3px 0 rgba(255,255,255,0.9);
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__tab.is-active {
+          background-color: rgba(0, 0, 0, 0.12);
+          box-shadow:
+            inset 0 -3px 0 rgba(255,255,255,0.95),
+            0 12px 22px rgba(0,0,0,0.12);
+        }
+
+        /* White divider lines between header categories */
+        #mega-banner-{{ section.id }} .mega-banner__tabs-item:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 28%;
+          height: 44%;
+          width: 1px;
+          background: rgba(255, 255, 255, 0.5);
+          pointer-events: none;
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__tabs-item:hover::after {
+          background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Floating dropdown */
+        #mega-banner-{{ section.id }} .mega-banner__dropdown {
+          position: absolute;
+          left: 0;
+          top: 100%;
+          width: 100%;
+          display: block;
+          pointer-events: none;
+          opacity: 0;
+          transform: translateY(8px);
+          transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+
+        /* Background + border for all panels combined */
+        #mega-banner-{{ section.id }} .mega-banner__panel-inner {
+          position: relative;
+          max-width: 1200px;
+          margin: 0 auto;
+          box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+          border: 1px solid var(--mega-banner-panel-border);
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__panel-inner::before {
+          background:
+            radial-gradient(circle at top left, rgba(0,185,180,0.16), transparent 55%),
+            radial-gradient(circle at top right, rgba(0,102,204,0.16), transparent 55%);
+        }
+
+        /* Show dropdown on hover of whole bar */
+        #mega-banner-{{ section.id }}:hover .mega-banner__dropdown {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+        }
+
+        /* Panels inside dropdown for desktop */
+        #mega-banner-{{ section.id }} .mega-banner__panel {
+          padding: 0.8rem 0 1.4rem;
+        }
+
+        /* Hide accordion bits on desktop */
+        #mega-banner-{{ section.id }} .mega-banner__accordion-item {
+          margin: 0;
+          border-bottom: none;
+        }
+
+        #mega-banner-{{ section.id }} .mega-banner__accordion-trigger {
+          display: none;
+        }
+      }
+
+/* MOBILE / TABLET: now just a green bar, no dropdown */
+@media screen and (max-width: 989px) {
+
+  /* Override banner colour ONLY on mobile */
+  #mega-banner-{{ section.id }} {
+    --mega-banner-bg: #02d6c5;
+    background-color: var(--mega-banner-bg);
+  }
+
+  #mega-banner-{{ section.id }} .mega-banner__toggle {
+    display: flex;
+    width: 100%;
+    padding: 0.25rem 0;  /* thickness of the bar */
+    border: none;
+    background-color: var(--mega-banner-bg);
+    color: transparent;  /* hide any text */
+  }
+
+  #mega-banner-{{ section.id }} .mega-banner__toggle-icon {
+    display: none;
+  }
+
+  /* Hide desktop-style stuff on mobile */
+  #mega-banner-{{ section.id }} .mega-banner__tabs-wrapper,
+  #mega-banner-{{ section.id }} .mega-banner__dropdown,
+  #mega-banner-{{ section.id }} .mega-banner__accordion-item {
+    display: none !important;
+  }
+
+  /* When drawer is open, hide the banner completely (MOBILE ONLY) */
+  .kb-drawer-open #mega-banner-{{ section.id }} {
+    display: none !important;
+  }
+
+}
+
+@media screen and (max-width: 749px) {
+  #mega-banner-{{ section.id }} {
+    display: none !important;
+  }
+}
+
+</style>
+
+    <script>
+      (function() {
+        window.addEventListener('load', function() {
+          var container = document.getElementById('mega-banner-{{ section.id }}');
+          if (!container) return;
+
+          var tabs = container.querySelectorAll('.mega-banner__tab');
+          var panels = container.querySelectorAll('.mega-banner__panel');
+          var toggle = container.querySelector('.mega-banner__toggle');
+          var accordionTriggers = container.querySelectorAll('.mega-banner__accordion-trigger');
+
+          function activate(index) {
+            tabs.forEach(function(tab, i) {
+              var isActive = i === index;
+              tab.classList.toggle('is-active', isActive);
+              tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            panels.forEach(function(panel, i) {
+              panel.classList.toggle('is-active', i === index);
+            });
+          }
+
+          // Desktop hover tab behaviour
+          tabs.forEach(function(tab, index) {
+            tab.addEventListener('mouseenter', function() {
+              if (window.matchMedia('(min-width: 990px)').matches) {
+                activate(index);
+              }
+            });
+
+            tab.addEventListener('focus', function() {
+              activate(index);
+            });
+
+            tab.addEventListener('click', function() {
+              if (!window.matchMedia('(min-width: 990px)').matches) {
+                activate(index);
+              }
+            });
+          });
+
+          // Mobile/Tablet: main dropdown toggle (disabled visually; keep safe for desktop only behaviour)
+          if (toggle) {
+            toggle.addEventListener('click', function() {
+              if (window.matchMedia('(max-width: 989px)').matches) {
+                return;
+              }
+              var isOpen = container.classList.toggle('is-open');
+              toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+          }
+
+          // Mobile/Tablet: accordion behaviour (practically desktop here, but kept for safety)
+          accordionTriggers.forEach(function(trigger) {
+            trigger.addEventListener('click', function() {
+              if (!window.matchMedia('(max-width: 989px)').matches) return;
+
+              var item = trigger.closest('.mega-banner__accordion-item');
+              if (!item) return;
+
+              var isOpen = item.classList.toggle('is-open');
+              trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+          });
+        });
+      })();
+    </script>
+  </section>
+{% else %}
+  <section class="section">
+    <div class="page-width">
+      <p style="opacity:0.7">
+        Select a menu for this mega menu banner in the section settings.
+      </p>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Mega menu banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "info": "Use a menu where top-level items are your main categories, with nested links for sub-categories."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Top bar background",
+      "default": "#00b9b4"
+    },
+    {
+      "type": "color",
+      "id": "bg_hover_color",
+      "label": "Active/hover tab background",
+      "default": "#00a2a0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Top bar text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "panel_bg_color",
+      "label": "Dropdown background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "panel_heading_color",
+      "label": "Dropdown heading text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "panel_text_color",
+      "label": "Dropdown body text",
+      "default": "#3e3e3e"
+    },
+    {
+      "type": "color",
+      "id": "panel_link_color",
+      "label": "Dropdown link text",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "panel_link_hover_color",
+      "label": "Dropdown link hover",
+      "default": "#004999"
+    },
+    {
+      "type": "color",
+      "id": "panel_border_color",
+      "label": "Dropdown border/divider",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "text",
+      "id": "toggle_label",
+      "label": "Mobile toggle label",
+      "default": "Bananas"
+    },
+    {
+  "type": "color",
+  "id": "bg_gradient_color",
+  "label": "Top bar gradient end colour",
+  "default": "#00d8c3"
+  },
+
+  ],
+  "presets": [
+    {
+      "name": "Mega menu banner"
+    }
+  ]
+}
+{% endschema %}

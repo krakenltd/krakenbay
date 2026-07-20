@@ -1,0 +1,26 @@
+{% comment %}
+  AJAX view for Filtered Brand Collection section.
+  Returns ONLY product cards with the right data-* attributes.
+{% endcomment %}
+{% layout none %}
+
+{%- paginate collection.products by 250 -%}
+  {% for product in collection.products %}
+    <div
+      class="filtered-brand-collection__product-card"
+      data-product-card
+      data-product-tags="{{ product.tags | join: '|' | downcase }}"
+      data-product-type="{{ product.type | downcase }}"
+      data-product-vendor="{{ product.vendor | downcase }}"
+    >
+      {% render 'card-product',
+        card_product: product,
+        media_aspect_ratio: 'square',
+        show_secondary_image: true,
+        show_vendor: false,
+        show_rating: true,
+        lazy_load: true
+      %}
+    </div>
+  {% endfor %}
+{%- endpaginate -%}

@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "square"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "custom_liquid_qR4PT7": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<style>\n    .seller-card {\n        background: white;\n        padding: 14px; /* Slightly increased */\n        border-radius: 12px;\n        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08); /* More subtle */\n        width: 100%;\n        max-width: 360px; /* Increased to counter shadow effect */\n        font-family: Arial, sans-serif;\n        text-align: left;\n        display: flex;\n        flex-direction: column;\n    }\n    .seller-header {\n        display: flex;\n        align-items: center;\n        gap: 10px;\n    }\n    .seller-logo {\n        width: 38px; /* Slightly larger */\n        height: auto;\n    }\n    .seller-text {\n        font-size: 12px;\n        color: #333;\n        line-height: 1.4;\n    }\n    .seller-text a {\n        color: #0073e6;\n        text-decoration: none;\n        font-weight: bold;\n        font-size: 13px;\n    }\n    .divider {\n        border-top: 1px solid #ddd;\n        margin: 10px 0; /* A little more spacing */\n    }\n    .payment-section {\n        font-weight: bold;\n        font-size: 12px;\n        margin-bottom: 6px;\n    }\n    .payment-icons {\n        display: flex;\n        flex-wrap: wrap;\n        justify-content: flex-start;\n        gap: 6px;\n    }\n    .payment-icons img {\n        width: 34px; /* Increased slightly */\n        height: auto;\n        object-fit: contain;\n    }\n</style>\n\n<div class=\"seller-card\">\n    <div class=\"seller-header\">\n        <img class=\"seller-logo\" src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/KRAKENLTD_cf7073cf-ff6d-4203-a415-ce3a465c0405.jpg?v=1743721294\" alt=\"Kraken Tech Logo\">\n        <div class=\"seller-text\">\n            <p>Refurbished and sold by <a href=\"#\">Kraken Tech</a></p>\n        </div>\n    </div>\n    <div class=\"seller-text\">\n        <p>Reseller since 2025, country of origin: United Kingdom</p>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"payment-section\">Accepts</div>\n    <div class=\"payment-icons\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/visa.png?v=1743806350\" alt=\"Visa\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/mastercard.png?v=1743806350\" alt=\"Mastercard\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/paypal.png?v=1743806350\" alt=\"PayPal\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/clearpay.png?v=1743806350\" alt=\"Clearpay\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/applepay.png?v=1743806350\" alt=\"Apple Pay\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/googlepay.png?v=1743806351\" alt=\"Google Pay\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0908/2948/8471/files/klarna.png?v=1743806350\" alt=\"Klarna\">\n    </div>\n</div>"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "vendor",
+        "price",
+        "buy_buttons",
+        "variant_picker",
+        "description",
+        "custom_liquid_qR4PT7",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "stickycheckoutbutton": {
+      "type": "stickycheckoutbutton",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "stickycheckoutbutton"
+  ]
+}

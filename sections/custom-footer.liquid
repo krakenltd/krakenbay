@@ -1,0 +1,779 @@
+{% comment %}
+  Kraken Bay – Custom Footer (Dawn)
+  - Newsletter row (left text + right signup)
+  - 5 columns (each can use a selected menu and/or rich text)
+  - Per-column toggle for payment icons
+  - Social icons toggle (hardcoded URLs + icon URLs you provided) shown in Column 1
+  - Optional right image stack column (up to 5 images) with optional links (url settings have NO defaults to avoid schema errors)
+{% endcomment %}
+
+<section class="kb-footer-{{ section.id }}">
+  <div class="kb-footer__inner page-width">
+
+    {% if section.settings.show_newsletter %}
+      <div class="kb-footer__top">
+        <div class="kb-footer__newsletter-copy">
+          <h2 class="kb-footer__newsletter-title">{{ section.settings.newsletter_heading }}</h2>
+          <div class="kb-footer__newsletter-sub rte">{{ section.settings.newsletter_subtext }}</div>
+        </div>
+
+        <div class="kb-footer__newsletter-form">
+          {% form 'customer', class: 'kb-newsletter' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <label class="visually-hidden" for="kb-newsletter-email-{{ section.id }}">Email</label>
+
+            <div class="kb-newsletter__row">
+              <div class="kb-newsletter__field">
+                <input
+                  id="kb-newsletter-email-{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="kb-newsletter__input"
+                  placeholder="{{ section.settings.newsletter_placeholder }}"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  required
+                >
+                <span class="kb-newsletter__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 7.5V17c0 .83.67 1.5 1.5 1.5h13c.83 0 1.5-.67 1.5-1.5V7.5c0-.83-.67-1.5-1.5-1.5h-13C4.67 6 4 6.67 4 7.5Z" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M5.5 8.2 12 12.6l6.5-4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+
+              <button type="submit" class="kb-newsletter__button">
+                {{ section.settings.newsletter_button }}
+              </button>
+            </div>
+
+            {% if form.posted_successfully? %}
+              <p class="kb-newsletter__msg kb-newsletter__msg--success">{{ section.settings.newsletter_success }}</p>
+            {% endif %}
+
+            {% if form.errors %}
+              <p class="kb-newsletter__msg kb-newsletter__msg--error">{{ form.errors | default_errors }}</p>
+            {% endif %}
+          {% endform %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="kb-footer__grid">
+
+      <!-- COL 1 -->
+      <div class="kb-footer__col kb-footer__col-1">
+        {% if section.settings.col1_heading != blank %}
+          <h3>{{ section.settings.col1_heading }}</h3>
+        {% endif %}
+
+        {% if section.settings.col1_menu != blank and section.settings.col1_menu.links.size > 0 %}
+          <ul class="kb-footer__links">
+            {% for l in section.settings.col1_menu.links %}
+              <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.col1_text != blank %}
+          <div class="kb-footer__text rte">{{ section.settings.col1_text }}</div>
+        {% endif %}
+
+        {% if section.settings.show_social_icons %}
+          <div class="kb-footer__social" aria-label="Social links">
+            <a href="https://www.instagram.com/kraken.bay/" target="_blank" rel="noopener">
+              <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/instagram-icone-icon.png?v=1771416150" width="20" height="20"
+alt="Instagram">
+            </a>
+            <a href="https://x.com/Krakentechuk" target="_blank" rel="noopener">
+              <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/X_icon_38f733e2-7c38-424f-b29e-3df762c4694a.png?v=1771416200" width="20" height="20"
+ alt="X">
+            </a>
+            <a href="https://www.facebook.com/people/Kraken-Bay/61588530263439/" target="_blank" rel="noopener">
+              <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/Facebookicon.png?v=1771416453" width="20" height="20"
+ alt="Facebook">
+            </a>
+            <a href="https://www.youtube.com/@krakenltd" target="_blank" rel="noopener">
+              <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/youtube.png?v=1771416540" width="20" height="20"
+ alt="YouTube">
+            </a>
+          </div>
+        {% endif %}
+
+        {% if section.settings.col1_show_payments %}
+          <div class="payment-icons" aria-label="Payment methods">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/visa.png?v=1743806350" width="20" height="20"
+ alt="Visa">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/mastercard.png?v=1743806350" width="20" height="20"
+ alt="Mastercard">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/paypal.png?v=1743806350" width="20" height="20"
+ alt="PayPal">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/clearpay.png?v=1743806350" width="20" height="20"
+ alt="Clearpay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/applepay.png?v=1743806350" width="20" height="20"
+ alt="Apple Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/googlepay.png?v=1743806351" width="20" height="20"
+ alt="Google Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/klarna.png?v=1743806350" width="20" height="20"
+ alt="Klarna">
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- COL 2 -->
+      <div class="kb-footer__col kb-footer__col-2">
+        {% if section.settings.col2_heading != blank %}<h3>{{ section.settings.col2_heading }}</h3>{% endif %}
+
+        {% if section.settings.col2_menu != blank and section.settings.col2_menu.links.size > 0 %}
+          <ul class="kb-footer__links">
+            {% for l in section.settings.col2_menu.links %}
+              <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.col2_text != blank %}
+          <div class="kb-footer__text rte">{{ section.settings.col2_text }}</div>
+        {% endif %}
+
+        {% if section.settings.col2_show_payments %}
+          <div class="payment-icons" aria-label="Payment methods">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/visa.png?v=1743806350" width="20" height="20"
+ alt="Visa">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/mastercard.png?v=1743806350" width="20" height="20"
+ alt="Mastercard">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/paypal.png?v=1743806350" width="20" height="20"
+ alt="PayPal">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/clearpay.png?v=1743806350" width="20" height="20"
+ alt="Clearpay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/applepay.png?v=1743806350" width="20" height="20"
+ alt="Apple Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/googlepay.png?v=1743806351" width="20" height="20"
+ alt="Google Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/klarna.png?v=1743806350" width="20" height="20"
+ alt="Klarna">
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- COL 3 -->
+      <div class="kb-footer__col kb-footer__col-3">
+        {% if section.settings.col3_heading != blank %}<h3>{{ section.settings.col3_heading }}</h3>{% endif %}
+
+        {% if section.settings.col3_menu != blank and section.settings.col3_menu.links.size > 0 %}
+          <ul class="kb-footer__links">
+            {% for l in section.settings.col3_menu.links %}
+              <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.col3_text != blank %}
+          <div class="kb-footer__text rte">{{ section.settings.col3_text }}</div>
+        {% endif %}
+
+        {% if section.settings.col3_show_payments %}
+          <div class="payment-icons" aria-label="Payment methods">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/visa.png?v=1743806350" width="20" height="20"
+ alt="Visa">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/mastercard.png?v=1743806350" width="20" height="20"
+ alt="Mastercard">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/paypal.png?v=1743806350" width="20" height="20"
+ alt="PayPal">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/clearpay.png?v=1743806350" width="20" height="20"
+ alt="Clearpay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/applepay.png?v=1743806350" width="20" height="20"
+alt="Apple Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/googlepay.png?v=1743806351" width="20" height="20"
+ alt="Google Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/klarna.png?v=1743806350" width="20" height="20"
+ alt="Klarna">
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- COL 4 -->
+      <div class="kb-footer__col kb-footer__col-4">
+        {% if section.settings.col4_heading != blank %}<h3>{{ section.settings.col4_heading }}</h3>{% endif %}
+
+        {% if section.settings.col4_menu != blank and section.settings.col4_menu.links.size > 0 %}
+          <ul class="kb-footer__links">
+            {% for l in section.settings.col4_menu.links %}
+              <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.col4_text != blank %}
+          <div class="kb-footer__text rte">{{ section.settings.col4_text }}</div>
+        {% endif %}
+
+        {% if section.settings.col4_show_payments %}
+          <div class="payment-icons" aria-label="Payment methods">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/visa.png?v=1743806350" width="20" height="20"
+ alt="Visa">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/mastercard.png?v=1743806350" width="20" height="20"
+ alt="Mastercard">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/paypal.png?v=1743806350" width="20" height="20"
+ alt="PayPal">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/clearpay.png?v=1743806350" width="20" height="20"
+ alt="Clearpay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/applepay.png?v=1743806350" width="20" height="20"
+ alt="Apple Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/googlepay.png?v=1743806351" width="20" height="20"
+ alt="Google Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/klarna.png?v=1743806350" width="20" height="20"
+ alt="Klarna">
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- COL 5 -->
+      <div class="kb-footer__col kb-footer__col-5">
+        {% if section.settings.col5_heading != blank %}<h3>{{ section.settings.col5_heading }}</h3>{% endif %}
+
+        {% if section.settings.col5_menu != blank and section.settings.col5_menu.links.size > 0 %}
+          <ul class="kb-footer__links">
+            {% for l in section.settings.col5_menu.links %}
+              <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.col5_text != blank %}
+          <div class="kb-footer__text rte">{{ section.settings.col5_text }}</div>
+        {% endif %}
+
+        {% if section.settings.col5_show_payments %}
+          <div class="payment-icons" aria-label="Payment methods">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/visa.png?v=1743806350" width="20" height="20"
+ alt="Visa">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/mastercard.png?v=1743806350" width="20" height="20"
+ alt="Mastercard">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/paypal.png?v=1743806350" width="20" height="20"
+ alt="PayPal">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/clearpay.png?v=1743806350" width="20" height="20"
+ alt="Clearpay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/applepay.png?v=1743806350" width="20" height="20"
+ alt="Apple Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/googlepay.png?v=1743806351" width="20" height="20"
+ alt="Google Pay">
+            <img src="https://cdn.shopify.com/s/files/1/0908/2948/8471/files/klarna.png?v=1743806350" width="20" height="20"
+ alt="Klarna">
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- RIGHT IMAGE STACK -->
+      {% if section.settings.show_image_column %}
+        <div class="kb-footer__image-col" aria-label="Footer images">
+          {% for i in (1..5) %}
+            {% assign img_key = 'image_' | append: i %}
+            {% assign link_key = 'image_' | append: i | append: '_link' %}
+            {% assign img = section.settings[img_key] %}
+            {% assign href = section.settings[link_key] %}
+
+            {% if img != blank %}
+              <div class="kb-footer__image-item">
+                {% if href != blank %}
+                  <a href="{{ href }}" class="kb-footer__image-link">
+                    {{ img | image_url: width: 220 | image_tag: class: 'kb-footer__image', loading: 'lazy' }}
+                  </a>
+                {% else %}
+                  {{ img | image_url: width: 220 | image_tag: class: 'kb-footer__image', loading: 'lazy' }}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <style>
+    .kb-footer-{{ section.id }}{
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 48px 0;
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__inner{
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* TOP newsletter row */
+    .kb-footer-{{ section.id }} .kb-footer__top{
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 28px;
+      align-items: start;
+      padding-bottom: 34px;
+      margin-bottom: 34px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__newsletter-title{
+      margin: 0 0 8px;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #111;
+      line-height: 1.15;
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__newsletter-sub{
+      color: rgba(0,0,0,0.72);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 520px;
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__row{
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__field{
+      position: relative;
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__input{
+      width: 100%;
+      min-height: 54px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.22);
+      padding: 14px 46px 14px 16px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__input:focus{
+      border-color: rgba(0,0,0,0.55);
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__icon{
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(0,0,0,0.6);
+      pointer-events: none;
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__button{
+      min-height: 54px;
+      border-radius: 10px;
+      border: none;
+      background: #111;
+      color: #fff;
+      padding: 0 22px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__button:hover{
+      opacity: 0.92;
+    }
+
+    .kb-footer-{{ section.id }} .kb-newsletter__msg{
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+    .kb-footer-{{ section.id }} .kb-newsletter__msg--success{ color: #0a7a2f; }
+    .kb-footer-{{ section.id }} .kb-newsletter__msg--error{ color: #b00020; }
+
+    /* GRID columns */
+    .kb-footer-{{ section.id }} .kb-footer__grid{
+      display: grid;
+      grid-template-columns: repeat(5, minmax(140px, 1fr)) minmax(170px, 220px);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__col h3{
+      margin: 0 0 14px;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #111;
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__links{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__links a,
+    .kb-footer-{{ section.id }} .kb-footer__text a{
+      color: rgba(0,0,0,0.78);
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__links a:hover,
+    .kb-footer-{{ section.id }} .kb-footer__text a:hover{
+      text-decoration: underline;
+      color: #111;
+    }
+
+    .kb-footer-{{ section.id }} .kb-footer__text{
+      color: rgba(0,0,0,0.78);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    /* Payment icons block */
+    .kb-footer-{{ section.id }} .payment-icons{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      align-items: center;
+    }
+
+    .kb-footer-{{ section.id }} .payment-icons img{
+      height: 20px;
+      width: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      border-radius: 6px;
+      padding: 4px 6px;
+      background: #fff;
+    }
+
+    /* Social icons */
+    .kb-footer-{{ section.id }} .kb-footer__social{
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .kb-footer-{{ section.id }} .kb-footer__social a{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.06);
+      transition: transform 0.12s ease, background 0.12s ease;
+    }
+    .kb-footer-{{ section.id }} .kb-footer__social a:hover{
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.10);
+    }
+    .kb-footer-{{ section.id }} .kb-footer__social img{
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Image stack column */
+    .kb-footer-{{ section.id }} .kb-footer__image-col{
+      display: grid;
+      gap: 12px;
+      justify-items: end;
+    }
+    .kb-footer-{{ section.id }} .kb-footer__image{
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 989px){
+      .kb-footer-{{ section.id }}{
+        padding: 34px 0;
+      }
+      .kb-footer-{{ section.id }} .kb-footer__top{
+        grid-template-columns: 1fr;
+      }
+      .kb-footer-{{ section.id }} .kb-footer__grid{
+        grid-template-columns: 1fr 1fr;
+      }
+      .kb-footer-{{ section.id }} .kb-footer__image-col{
+        grid-column: 1 / -1;
+        justify-items: start;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(120px, 160px);
+        overflow-x: auto;
+        padding-top: 6px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .kb-footer-{{ section.id }} .kb-footer__grid{
+        grid-template-columns: 1fr;
+      }
+      .kb-footer-{{ section.id }} .kb-newsletter__row{
+        grid-template-columns: 1fr;
+      }
+      .kb-footer-{{ section.id }} .kb-newsletter__button{
+        width: 100%;
+      }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "KB Footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show email signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Stay in the loop with hot drops"
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_subtext",
+      "label": "Newsletter subtext",
+      "default": "<p>Be the first to know about new arrivals, exclusive deals, and tech news that matters.</p>"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Button text",
+      "default": "Sign up"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_success",
+      "label": "Success message",
+      "default": "Thanks — you’re signed up."
+    },
+
+    {
+      "type": "header",
+      "content": "Social icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "Show social icons (Column 1)",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Columns"
+    },
+
+    {
+      "type": "text",
+      "id": "col1_heading",
+      "label": "Column 1 heading",
+      "default": "About"
+    },
+    {
+      "type": "link_list",
+      "id": "col1_menu",
+      "label": "Column 1 menu"
+    },
+    {
+      "type": "richtext",
+      "id": "col1_text",
+      "label": "Column 1 text (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "col1_show_payments",
+      "label": "Show payment icons in column 1",
+      "default": false
+    },
+
+    {
+      "type": "text",
+      "id": "col2_heading",
+      "label": "Column 2 heading",
+      "default": "Help"
+    },
+    {
+      "type": "link_list",
+      "id": "col2_menu",
+      "label": "Column 2 menu"
+    },
+    {
+      "type": "richtext",
+      "id": "col2_text",
+      "label": "Column 2 text (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "col2_show_payments",
+      "label": "Show payment icons in column 2",
+      "default": false
+    },
+
+    {
+      "type": "text",
+      "id": "col3_heading",
+      "label": "Column 3 heading",
+      "default": "Services"
+    },
+    {
+      "type": "link_list",
+      "id": "col3_menu",
+      "label": "Column 3 menu"
+    },
+    {
+      "type": "richtext",
+      "id": "col3_text",
+      "label": "Column 3 text (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "col3_show_payments",
+      "label": "Show payment icons in column 3",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "col4_heading",
+      "label": "Column 4 heading",
+      "default": "Resources"
+    },
+    {
+      "type": "link_list",
+      "id": "col4_menu",
+      "label": "Column 4 menu"
+    },
+    {
+      "type": "richtext",
+      "id": "col4_text",
+      "label": "Column 4 text (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "col4_show_payments",
+      "label": "Show payment icons in column 4",
+      "default": false
+    },
+
+    {
+      "type": "text",
+      "id": "col5_heading",
+      "label": "Column 5 heading",
+      "default": "Law and order"
+    },
+    {
+      "type": "link_list",
+      "id": "col5_menu",
+      "label": "Column 5 menu"
+    },
+    {
+      "type": "richtext",
+      "id": "col5_text",
+      "label": "Column 5 text (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "col5_show_payments",
+      "label": "Show payment icons in column 5",
+      "default": false
+    },
+
+    {
+      "type": "header",
+      "content": "Right image column"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image_column",
+      "label": "Show image column",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "url",
+      "id": "image_1_link",
+      "label": "Image 1 link (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "url",
+      "id": "image_2_link",
+      "label": "Image 2 link (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "url",
+      "id": "image_3_link",
+      "label": "Image 3 link (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "url",
+      "id": "image_4_link",
+      "label": "Image 4 link (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "url",
+      "id": "image_5_link",
+      "label": "Image 5 link (optional)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "KB Footer"
+    }
+  ]
+}
+{% endschema %}
