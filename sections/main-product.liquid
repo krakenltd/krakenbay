@@ -74,6 +74,7 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
+  {% render 'kb-breadcrumbs' %}
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
@@ -670,6 +671,41 @@
         </section>
       </div>
     </div>
+
+    <section class="kb-product-assurance" aria-labelledby="kb-assurance-{{ section.id }}">
+      <h2 class="kb-product-assurance__title" id="kb-assurance-{{ section.id }}">Buy refurbished with confidence</h2>
+      <div class="kb-product-assurance__grid">
+        <div class="kb-product-assurance__item"><span class="kb-product-assurance__icon">✓</span><strong>Professionally tested</strong><p>Checked for core function and stability before it is listed.</p></div>
+        <div class="kb-product-assurance__item"><span class="kb-product-assurance__icon">↻</span><strong>3-month warranty</strong><p>Clear support if your item develops a covered fault.</p></div>
+        <div class="kb-product-assurance__item"><span class="kb-product-assurance__icon">⌁</span><strong>UK-based support</strong><p>Real help with products, orders and compatibility questions.</p></div>
+      </div>
+    </section>
+
+    <div class="kb-product-guide">
+      <div>
+        <span class="kb-product-guide__kicker">Compatibility check</span>
+        <h2>Make sure it fits your setup</h2>
+        <p>Match the exact part number and specification—not appearance alone. Check generation, interface, socket, form factor and supported capacity where relevant.</p>
+        <a href="/pages/contact">Ask us before ordering →</a>
+      </div>
+      <div>
+        <span class="kb-product-guide__kicker">What to expect</span>
+        <h2>Honest refurbished condition</h2>
+        <p>Previously used items may show light cosmetic signs of their first life. This does not affect tested functionality. Review the listing photographs and description for item-specific detail.</p>
+      </div>
+    </div>
+
+    <section class="kb-product-details" aria-labelledby="kb-details-{{ section.id }}">
+      <div class="kb-product-details__heading"><h2 id="kb-details-{{ section.id }}">Everything you need to know</h2><p>Practical answers before you buy, with no jargon and no surprises.</p></div>
+      <div class="kb-product-details__grid">
+        <details><summary>How is this item tested?</summary><p>Each item is identified, visually inspected and checked for its essential functions. Only working products that meet our checks are made available for sale.</p></details>
+        <details><summary>What does refurbished mean?</summary><p>The item has been previously used and prepared for another life. It is cleaned, tested and described honestly; cosmetic signs of use may remain.</p></details>
+        <details><summary>What is covered by the warranty?</summary><p>Products include a 3-month warranty for covered hardware faults. Contact our support team with your order details and we will help resolve the issue.</p></details>
+        <details><summary>Will it work with my device?</summary><p>Compatibility depends on the exact specifications of your device. Compare model and part numbers carefully, or ask our team before ordering if you are unsure.</p></details>
+        <details><summary>How will it be delivered?</summary><p>Your order is packed securely and sent using tracked delivery. Dispatch and tracking updates are provided using the contact details entered at checkout.</p></details>
+        <details><summary>Why choose refurbished?</summary><p>Refurbished technology can deliver the performance you need for less while extending hardware life and keeping useful equipment in circulation.</p></details>
+      </div>
+    </section>
 
     {% render 'product-media-modal', variant_images: variant_images %}
 
@@ -2266,5 +2302,3 @@
             }
         </style>
         {% endif %}
-
-

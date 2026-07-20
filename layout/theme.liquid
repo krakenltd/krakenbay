@@ -22,9 +22,17 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {%- liquid
+      assign kb_meta_description = page_description
+      if kb_meta_description == blank and request.page_type == 'product'
+        assign kb_meta_description = product.description | strip_html | strip_newlines | truncate: 155
+      elsif kb_meta_description == blank and request.page_type == 'collection'
+        assign kb_meta_description = 'Shop professionally tested refurbished ' | append: collection.title | append: ' from Kraken Bay. Affordable UK tech with a 3-month warranty and tracked delivery.'
+      elsif kb_meta_description == blank
+        assign kb_meta_description = 'Shop professionally tested refurbished computers, components and technology from Kraken Bay, with UK support and a 3-month warranty.'
+      endif
+    -%}
+    <meta name="description" content="{{ kb_meta_description | strip_html | strip_newlines | escape }}">
 
     {% render 'meta-tags' %}
 
@@ -256,6 +264,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'kb-commerce.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}

@@ -4,6 +4,14 @@
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
 
+  if page_description == blank and request.page_type == 'product'
+    assign og_description = product.description | strip_html | strip_newlines | truncate: 155
+  elsif page_description == blank and request.page_type == 'collection'
+    assign og_description = 'Shop professionally tested refurbished ' | append: collection.title | append: ' from Kraken Bay, with a 3-month warranty and UK support.'
+  elsif page_description == blank
+    assign og_description = 'Professionally tested refurbished computers, components and technology from Kraken Bay.'
+  endif
+
   if request.page_type == 'product'
     assign og_type = 'product'
   elsif request.page_type == 'article'
@@ -29,6 +37,8 @@
 {%- if request.page_type == 'product' -%}
   <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
   <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+  <meta property="product:availability" content="{% if product.available %}in stock{% else %}out of stock{% endif %}">
+  <meta property="product:brand" content="{{ product.vendor | default: shop.name | escape }}">
 {%- endif -%}
 
 {%- if settings.social_twitter_link != blank -%}
