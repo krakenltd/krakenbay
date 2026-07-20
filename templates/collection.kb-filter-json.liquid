@@ -7,7 +7,7 @@
 {%- paginate collection.products by 250 -%}
   {% for product in collection.products %}
     <div
-      class="filtered-brand-collection__product-card"
+      class="kb-cpu-finder__product-card"
       data-product-card
       data-product-tags="{{ product.tags | join: '|' | downcase }}"
       data-product-type="{{ product.type | downcase }}"
