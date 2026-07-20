@@ -6,6 +6,7 @@
 
 {%- paginate collection.products by 250 -%}
   {% for product in collection.products %}
+    {%- if product.available -%}
     <div
       class="kb-cpu-finder__product-card"
       data-product-card
@@ -22,5 +23,6 @@
         lazy_load: true
       %}
     </div>
+    {%- endif -%}
   {% endfor %}
 {%- endpaginate -%}
