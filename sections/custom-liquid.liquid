@@ -11,11 +11,21 @@
     }
   }
 {%- endstyle -%}
-<div class="color-{{ section.settings.color_scheme }} gradient">
+<div id="CustomLiquid-{{ section.id }}" class="color-{{ section.settings.color_scheme }} gradient">
   <div class="section-{{ section.id }}-padding">
     {{ section.settings.custom_liquid }}
   </div>
 </div>
+
+<script>
+  (function () {
+    var section = document.getElementById('CustomLiquid-{{ section.id }}');
+    if (!section) return;
+
+    var announcement = section.querySelector('.kb-mobile-announcement span:first-child');
+    if (announcement) announcement.textContent = 'Dive into seriously good tech';
+  })();
+</script>
 
 {% schema %}
 {
